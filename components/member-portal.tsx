@@ -2,20 +2,16 @@
 
 import { useState, useCallback, useEffect, useRef } from 'react'
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from "@/components/ui/card"
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card"
-import { Input } from "@/components/ui/input"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogTrigger } from "@/components/ui/dialog"
-import { Plus, Loader2, CheckCircle, MessageSquare, MoreHorizontal, Search, X, Copy, Check, ChevronLeft, ChevronRight, Facebook, Twitter, Instagram, Globe, Users, Shield, Github } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
+import { Plus, Loader2, CheckCircle, MoreHorizontal, Search, X, Copy, Check, ChevronLeft, ChevronRight, Facebook, Twitter, Instagram, Globe, Users, Shield, Github } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import useEmblaCarousel from 'embla-carousel-react'
 import Link from "next/link"
 import { IBM_Plex_Sans, Space_Mono } from 'next/font/google'
+import { Input } from "@/components/ui/input"
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
 
 const ibmPlexSans = IBM_Plex_Sans({
   weight: ['400', '700'],
@@ -105,7 +101,14 @@ const userInfo: UserInfo = {
   interactionId: "1300860653463933029"
 }
 
-const WalletModal = ({ isOpen, onClose, onConnect, setSelectedWallet }) => {
+interface WalletModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onConnect: (walletName: string) => void;
+  setSelectedWallet: (wallet: string) => void;
+}
+
+const WalletModal = ({ isOpen, onClose, onConnect, setSelectedWallet }: WalletModalProps) => {
   const [searchTerm, setSearchTerm] = useState("")
   const filteredWallets = walletOptions.filter(wallet => 
     wallet.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -157,10 +160,17 @@ const WalletModal = ({ isOpen, onClose, onConnect, setSelectedWallet }) => {
   )
 }
 
-const AdPopup = ({ isOpen, onClose, onContinue, isWalletAdded = false }) => {
+interface AdPopupProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onContinue: () => void;
+  isWalletAdded?: boolean;
+}
+
+const AdPopup = ({ isOpen, onClose, onContinue, isWalletAdded = false }: AdPopupProps) => {
   const [progress, setProgress] = useState(0)
   const [showContinue, setShowContinue] = useState(false)
-  const intervalRef = useRef(null)
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     if (isOpen) {
@@ -169,7 +179,7 @@ const AdPopup = ({ isOpen, onClose, onContinue, isWalletAdded = false }) => {
       intervalRef.current = setInterval(() => {
         setProgress(prev => {
           if (prev >= 100) {
-            clearInterval(intervalRef.current)
+            clearInterval(intervalRef.current as NodeJS.Timeout)
             setShowContinue(true)
             return 100
           }
@@ -179,7 +189,9 @@ const AdPopup = ({ isOpen, onClose, onContinue, isWalletAdded = false }) => {
     }
 
     return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current)
+      if (intervalRef.current !== null) {
+        clearInterval(intervalRef.current)
+      }
     }
   }, [isOpen])
 
@@ -256,7 +268,13 @@ const AdPopup = ({ isOpen, onClose, onContinue, isWalletAdded = false }) => {
   )
 }
 
-const RolesGrantedModal = ({ isOpen, onClose, roles }) => {
+interface RolesGrantedModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  roles: string[];
+}
+
+const RolesGrantedModal = ({ isOpen, onClose, roles }: RolesGrantedModalProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[500px] bg-[#242457] border-[#4A4A7E] text-[#F5F1E6]">
@@ -291,7 +309,8 @@ const recommendedCommunities = [
       twitter: "https://twitter.com/cryptoexplorers",
       facebook: "https://facebook.com/cryptoexplorers",
       instagram: "https://instagram.com/cryptoexplorers",
-      website: "https://cryptoexplorers.com"
+      website: "https://cryptoexplorers.com",
+      github: "https://github.com/cryptoexplorers"
     },
     discordLink: "https://discord.gg/cryptoexplorers",
     image: "/CollabLand.png"
@@ -354,9 +373,9 @@ const recommendedCommunities = [
   },
 ]
 
-const CommunityCard = ({ community }) => {
+const CommunityCard = ({ community }: { community: typeof recommendedCommunities[0] }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const descriptionRef = useRef(null);
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
 
   useEffect(() => {
@@ -509,7 +528,7 @@ const PersonalizedInfo = () => (
 )
 
 export function MemberPortal() {
-  const [wallets, setWallets] = useState(initialWallets)
+  const [wallets, setWallets] = useState<{ type: string; address: string; icon: string | JSX.Element }[]>(initialWallets)
   const [isLoading, setIsLoading] = useState(false)
   const [expandedWallet, setExpandedWallet] = useState<number | null>(null)
   const [isVerifying, setIsVerifying] = useState(false)
@@ -779,7 +798,11 @@ export function MemberPortal() {
         }}
         onContinue={() => {
           if (isWalletAdded) {
-            const newWallet = { type: selectedWallet, address: generateRandomAddress('EVM') }
+            const newWallet = { 
+              type: selectedWallet, 
+              address: generateRandomAddress('EVM'),
+              icon: walletOptions.find(w => w.name === selectedWallet)?.icon || '👛'
+            }
             setWallets(prevWallets => [...prevWallets, newWallet])
           } else {
             setIsRolesModalOpen(true)

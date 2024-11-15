@@ -1,4 +1,4 @@
-import { MemberPortal } from '@/components/member-portal.tsx'
+import { MemberPortal } from '@/components/member-portal'
 
 export default function Home() {
   return <MemberPortal />

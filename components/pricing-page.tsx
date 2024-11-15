@@ -1,9 +1,10 @@
 'use client'
 
 import * as React from "react"
-import { ChevronDown, Check, X, ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeft, ChevronRight, Check, X } from "lucide-react"
 import Link from "next/link"
 import { IBM_Plex_Sans, Space_Mono } from 'next/font/google'
+import Image from 'next/image'
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
@@ -211,9 +212,11 @@ export function PricingPage() {
             </Link>
           </div>
           <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <img 
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/color_logo_wordmark-2Pg8pcGf6uxVyIG3c4fFeUeLrxDpEh.png" 
-              alt="Collab.Land Logo" 
+            <Image 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/color_logo_wordmark-2Pg8pcGf6uxVyIG3c4fFeUeLrxDpEh.png"
+              alt="Collab.Land Logo"
+              width={300}
+              height={96}
               className="h-24 w-auto"
             />
           </div>
@@ -254,7 +257,7 @@ export function PricingPage() {
                 <div className="relative px-12">
                   <Carousel className="w-full max-w-5xl mx-auto" opts={{ loop: true }}>
                     <CarouselContent>
-                      {discordPlans.map((plan, index) => (
+                      {discordPlans.map((plan) => (
                         <CarouselItem key={plan.name} className="md:basis-1/2 lg:basis-1/3">
                           <div className="p-1">
                             <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[600px] shadow-neon">
@@ -312,7 +315,7 @@ export function PricingPage() {
                 <div className="relative px-12">
                   <Carousel className="w-full max-w-5xl mx-auto">
                     <CarouselContent className="flex justify-center">
-                      {telegramPlans.map((plan, index) => (
+                      {telegramPlans.map((plan) => (
                         <CarouselItem key={plan.name} className="md:basis-1/2 lg:basis-1/3">
                           <div className="p-1">
                             <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[600px] shadow-neon">
