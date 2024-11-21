@@ -1,5 +1,5 @@
-import { MemberPortal } from '@/components/member-portal'
+import { PricingPage } from '@/components/pricing-page'
 
-export default function Home() {
-  return <MemberPortal />
-}
+export default function Page() {
+  return <PricingPage />
+} 

@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from "react"
-import { ChevronLeft, ChevronRight, Check, X } from "lucide-react"
+import { ChevronLeft, ChevronRight, Check, X, ChevronDown } from "lucide-react"
 import Link from "next/link"
 import { IBM_Plex_Sans, Space_Mono } from 'next/font/google'
 import Image from 'next/image'
@@ -11,6 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 
 // ----- Pricing Data (Discord)-----
 const discordPlans = [
@@ -198,48 +199,302 @@ const features = [
 const prices = ['Free', '$17.99', '$35', '$149', 'Custom']
 
 // ----- Pricing Page Component -----
+import { CarouselApi } from "@/components/ui/carousel"
+
 export function PricingPage() {
+  const [carousel, setCarousel] = React.useState<CarouselApi>()
+
   return (
     <div className={`min-h-screen bg-[#1A1A40] text-[#E1E2E6] ${ibmPlexSans.className}`}>
-      <header className="px-4 py-6">
-        <nav className="bg-[#F5F1E6] rounded-full px-8 py-6 flex items-center justify-between max-w-7xl mx-auto relative">
-          <div className="flex flex-col items-start gap-0">
-            <Link href="https://linktr.ee/collab_land_" className={`text-[#1A1A40] hover:text-[#FFB800] transition-colors ${spaceMono.className} text-base font-bold`}>
-              Socials
-            </Link>
-            <Link href="https://collabland.substack.com" className={`text-[#1A1A40] hover:text-[#FFB800] transition-colors ${spaceMono.className} text-base font-bold`}>
-              Articles
+      <header className="relative sticky top-0 z-50 shadow-lg after:absolute after:inset-0 after:shadow-[0_4px_12px_rgba(0,0,0,0.2)] after:pointer-events-none">
+        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#FFC700] to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FFC700]/5 to-transparent pointer-events-none" />
+        <nav className="bg-[#F5F1E6] rounded-none px-8 py-2.5 flex items-center justify-between w-full relative h-[56px] z-50">
+          <div className="flex items-center">
+            <Link href="/" className="transform transition-transform hover:scale-105">
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/color_logo_wordmark-2Pg8pcGf6uxVyIG3c4fFeUeLrxDpEh.png"
+                alt="Collab.Land"
+                width={600}
+                height={120}
+                className="h-11 w-auto hover:brightness-110 transition-all"
+                priority
+              />
             </Link>
           </div>
-          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <Image 
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/color_logo_wordmark-2Pg8pcGf6uxVyIG3c4fFeUeLrxDpEh.png"
-              alt="Collab.Land Logo"
-              width={300}
-              height={96}
-              className="h-24 w-auto"
-            />
-          </div>
-          <div className="flex flex-col items-end gap-0">
-            <Link href="https://cc.collab.land/login" className={`text-[#1A1A40] hover:text-[#FFB800] transition-colors ${spaceMono.className} text-base font-bold`}>
-              Admin Portal
-            </Link>
-            <Link href="https://docs.collab.land" className={`text-[#1A1A40] hover:text-[#FFB800] transition-colors ${spaceMono.className} text-base font-bold`}>
-              Docs
-            </Link>
+          <div className="flex items-center gap-6">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  className={`
+                    text-[#1A1A40] hover:text-[#FFB800] 
+                    transition-all duration-300 
+                    ${spaceMono.className} 
+                    text-base font-bold
+                    relative
+                    group
+                    px-4
+                    hover:bg-[#FFC700]/10
+                    data-[state=open]:bg-[#FFC700]/10
+                  `}
+                >
+                  <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#FFB800] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                  Admins <ChevronDown className="ml-2 h-4 w-4 transition-transform duration-300" data-state="closed" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent 
+                className={`
+                  w-48 bg-[#FFC700] 
+                  border-none rounded-lg shadow-lg 
+                  ${spaceMono.className}
+                  backdrop-blur-sm
+                  relative
+                  before:absolute before:inset-0 
+                  before:border-2 before:border-black/10 
+                  before:rounded-lg
+                  after:absolute after:inset-0 
+                  after:bg-gradient-to-b after:from-white/10 after:to-transparent 
+                  after:rounded-lg after:pointer-events-none
+                `}
+                sideOffset={8}
+                align="center"
+                side="bottom"
+              >
+                <div className="grid gap-1 relative z-10">
+                  {[
+                    { href: "/admin/command-center", label: "Command Center" },
+                    { href: "/admin/docs", label: "Docs" },
+                    { href: "/admin/invite", label: "Invite" },
+                    { href: "/admin/integrations", label: "Integrations" },
+                    { href: "/admin/premium", label: "Premium" }
+                  ].map((item) => (
+                    <Link 
+                      key={item.href}
+                      href={item.href} 
+                      className="
+                        text-[#1A1A40] 
+                        transition-all 
+                        text-base font-bold
+                        px-3 py-2.5 
+                        rounded-lg
+                        hover:bg-black/10 
+                        flex items-center justify-center
+                        relative
+                        group
+                        border border-transparent
+                        hover:border-black/10
+                        hover:shadow-[inset_0_0_10px_rgba(0,0,0,0.1)]
+                        before:absolute before:inset-0 
+                        before:bg-gradient-to-r before:from-transparent 
+                        before:via-white/5 before:to-transparent 
+                        before:opacity-0 before:group-hover:opacity-100
+                        before:transition-opacity before:duration-300
+                      "
+                    >
+                      <span className="relative z-10 group-hover:text-[#1A1A40]/80">{item.label}</span>
+                      <div className="
+                        absolute inset-0 
+                        bg-gradient-to-r from-black/0 via-black/5 to-black/0 
+                        opacity-0 group-hover:opacity-100 
+                        transition-opacity duration-300 
+                        rounded-lg
+                      "/>
+                    </Link>
+                  ))}
+                </div>
+              </PopoverContent>
+            </Popover>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  className={`
+                    text-[#1A1A40] hover:text-[#FFB800] 
+                    transition-all duration-300 
+                    ${spaceMono.className} 
+                    text-base font-bold
+                    relative
+                    group
+                    px-4
+                    hover:bg-[#FFC700]/10
+                    data-[state=open]:bg-[#FFC700]/10
+                  `}
+                >
+                  <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#FFB800] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                  Resources <ChevronDown className="ml-2 h-4 w-4 transition-transform duration-300" data-state="closed" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent 
+                className={`
+                  w-48 bg-[#FFC700] 
+                  border-none rounded-lg shadow-lg 
+                  ${spaceMono.className}
+                  backdrop-blur-sm
+                  relative
+                  before:absolute before:inset-0 
+                  before:border-2 before:border-black/10 
+                  before:rounded-lg
+                  after:absolute after:inset-0 
+                  after:bg-gradient-to-b after:from-white/10 after:to-transparent 
+                  after:rounded-lg after:pointer-events-none
+                `}
+                sideOffset={8}
+                align="center"
+                side="bottom"
+              >
+                <div className="grid gap-1 relative z-10">
+                  {[
+                    { href: "/resources/docs", label: "Docs" },
+                    { href: "/resources/integrations", label: "Integrations" },
+                    { href: "/resources/newsletter", label: "Newsletter" },
+                    { href: "/resources/support", label: "Support" },
+                    { href: "/resources/updates", label: "Updates" },
+                    { href: "/resources/youtube", label: "YouTube" },
+                    { href: "/resources/collab-token", label: "$COLLAB" }
+                  ].map((item) => (
+                    <Link 
+                      key={item.href}
+                      href={item.href} 
+                      className="
+                        text-[#1A1A40] 
+                        transition-all 
+                        text-base font-bold
+                        px-3 py-2.5 
+                        rounded-lg
+                        hover:bg-black/10 
+                        flex items-center justify-center
+                        relative
+                        group
+                        border border-transparent
+                        hover:border-black/10
+                        hover:shadow-[inset_0_0_10px_rgba(0,0,0,0.1)]
+                        before:absolute before:inset-0 
+                        before:bg-gradient-to-r before:from-transparent 
+                        before:via-white/5 before:to-transparent 
+                        before:opacity-0 before:group-hover:opacity-100
+                        before:transition-opacity before:duration-300
+                      "
+                    >
+                      <span className="relative z-10 group-hover:text-[#1A1A40]/80">{item.label}</span>
+                      <div className="
+                        absolute inset-0 
+                        bg-gradient-to-r from-black/0 via-black/5 to-black/0 
+                        opacity-0 group-hover:opacity-100 
+                        transition-opacity duration-300 
+                        rounded-lg
+                      "/>
+                    </Link>
+                  ))}
+                </div>
+              </PopoverContent>
+            </Popover>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  className={`
+                    text-[#1A1A40] hover:text-[#FFB800] 
+                    transition-all duration-300 
+                    ${spaceMono.className} 
+                    text-base font-bold
+                    relative
+                    group
+                    px-4
+                    hover:bg-[#FFC700]/10
+                    data-[state=open]:bg-[#FFC700]/10
+                  `}
+                >
+                  <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#FFB800] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                  Socials <ChevronDown className="ml-2 h-4 w-4 transition-transform duration-300" data-state="closed" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent 
+                className={`
+                  w-48 bg-[#FFC700] 
+                  border-none rounded-lg shadow-lg 
+                  ${spaceMono.className}
+                  backdrop-blur-sm
+                  relative
+                  before:absolute before:inset-0 
+                  before:border-2 before:border-black/10 
+                  before:rounded-lg
+                  after:absolute after:inset-0 
+                  after:bg-gradient-to-b after:from-white/10 after:to-transparent 
+                  after:rounded-lg after:pointer-events-none
+                `}
+                sideOffset={8}
+                align="center"
+                side="bottom"
+              >
+                <div className="grid gap-1 relative z-10">
+                  {[
+                    { href: "https://discord.gg/collabland", label: "Discord" },
+                    { href: "https://www.instagram.com/collab.land", label: "Instagram" },
+                    { href: "https://linktr.ee/collabland", label: "Linktree" },
+                    { href: "https://twitter.com/Collab_Land_", label: "X" }
+                  ].map((item) => (
+                    <Link 
+                      key={item.href}
+                      href={item.href} 
+                      className="
+                        text-[#1A1A40] 
+                        transition-all 
+                        text-base font-bold
+                        px-3 py-2.5 
+                        rounded-lg
+                        hover:bg-black/10 
+                        flex items-center justify-center
+                        relative
+                        group
+                        border border-transparent
+                        hover:border-black/10
+                        hover:shadow-[inset_0_0_10px_rgba(0,0,0,0.1)]
+                        before:absolute before:inset-0 
+                        before:bg-gradient-to-r before:from-transparent 
+                        before:via-white/5 before:to-transparent 
+                        before:opacity-0 before:group-hover:opacity-100
+                        before:transition-opacity before:duration-300
+                      "
+                    >
+                      <span className="relative z-10 group-hover:text-[#1A1A40]/80">{item.label}</span>
+                      <div className="
+                        absolute inset-0 
+                        bg-gradient-to-r from-black/0 via-black/5 to-black/0 
+                        opacity-0 group-hover:opacity-100 
+                        transition-opacity duration-300 
+                        rounded-lg
+                      "/>
+                    </Link>
+                  ))}
+                </div>
+              </PopoverContent>
+            </Popover>
           </div>
         </nav>
       </header>
 
       <main>
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-8">
-          <div className="max-w-7xl mx-auto">
-          <h1 className="text-3xl font-bold text-[#F5F1E6] text-center text-shadow-sm">Subscription Plans</h1>
-            <p className={`text-xl text-center text-[#B8B9BE] mb-12 ${spaceMono.className}`}>
-            No hidden fees. No surprises. Start for free and upgrade as you grow.
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-12">
+          <div 
+            className="absolute inset-0 opacity-40"
+            style={{ 
+              backgroundImage: 'url("/Hexagons-4.svg")',
+              backgroundSize: '80%',
+              backgroundPosition: '-80% center',
+              backgroundRepeat: 'no-repeat',
+              left: '-35%',
+              right: '35%',
+            }} 
+          />
+          
+          <div className="max-w-7xl mx-auto relative z-10">
+            <h1 className="text-3xl font-bold text-[#F5F1E6] text-center text-shadow-sm">Subscription Plans</h1>
+            <p className={`text-lg text-center text-[#B8B9BE] mb-8 ${spaceMono.className}`}>
+              No hidden fees. No surprises. Start for free and upgrade as you grow.
             </p>
-            <Tabs defaultValue="discord" className="mb-16">
-              <TabsList className="grid w-full grid-cols-2 bg-[#F5F1E6] mb-8 p-1 h-12">
+            <Tabs defaultValue="discord" className="mb-12">
+              <TabsList className="grid w-full grid-cols-2 bg-[#F5F1E6] mb-6 p-1 h-10">
                 <TabsTrigger 
                   value="discord" 
                   className="data-[state=active]:bg-[#FFC700] text-[#1F2232] data-[state=active]:text-[#1F2232] font-semibold transition-colors text-lg h-full"
@@ -254,13 +509,13 @@ export function PricingPage() {
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="discord">
-                <div className="relative px-12">
-                  <Carousel className="w-full max-w-5xl mx-auto" opts={{ loop: true }}>
+                <div className="relative px-8">
+                  <Carousel className="w-full max-w-4xl mx-auto">
                     <CarouselContent>
                       {discordPlans.map((plan) => (
                         <CarouselItem key={plan.name} className="md:basis-1/2 lg:basis-1/3">
                           <div className="p-1">
-                            <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[600px] shadow-neon">
+                            <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[500px] shadow-neon">
                               <CardHeader>
                                 <CardTitle className="text-2xl font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
                                 <CardDescription className="text-[#1A1A40]/80 text-center">{plan.description}</CardDescription>
@@ -312,79 +567,157 @@ export function PricingPage() {
                 </div>
               </TabsContent>
               <TabsContent value="telegram">
-                <div className="relative px-12">
-                  <Carousel className="w-full max-w-5xl mx-auto">
-                    <CarouselContent className="flex justify-center">
-                      {telegramPlans.map((plan) => (
-                        <CarouselItem key={plan.name} className="md:basis-1/2 lg:basis-1/3">
-                          <div className="p-1">
-                            <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[600px] shadow-neon">
-                              <CardHeader>
-                                <CardTitle className="text-2xl font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
-                                <CardDescription className="text-[#1A1A40]/80 text-center">{plan.description}</CardDescription>
-                              </CardHeader>
-                              <CardContent className="flex-grow overflow-y-auto">
-                                <div className="flex items-baseline justify-center mb-6 h-[40px]">
-                                  <span className="text-4xl font-extrabold text-[#1A1A40]">{plan.price}</span>
-                                  {plan.period && <span className="text-[#1A1A40]/80 ml-1">{plan.period}</span>}
-                                </div>
-                                <ul className="space-y-2 mb-6 pb-4 text-[#1A1A40]">
-                                  {plan.features.map((feature, index) => (
-                                    <li key={index} className="flex items-start">
-                                      <Check className="h-5 w-5 text-[#3A7D7B] mr-2 mt-0.5 flex-shrink-0" />
-                                      <span>{feature}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </CardContent>
-                              <CardFooter className="pt-6">
-                                <Button 
-                                  asChild 
-                                  className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] shadow-neon-button transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
-                                >
-                                  {plan.cta === "Contact Us" ? (
-                                    <a href="mailto:anjali@collab.land">
-                                      <span className="absolute inset-0 bg-gradient-to-r from-[#FFD700] to-[#FFC700] opacity-0 group-hover:opacity-50 transition-opacity duration-300 blur-xl"></span>
-                                      <span className="relative z-10">{plan.cta}</span>
-                                    </a>
-                                  ) : (
-                                    <Link href="https://cc.collab.land/login">
-                                      <span className="absolute inset-0 bg-gradient-to-r from-[#FFD700] to-[#FFC700] opacity-0 group-hover:opacity-50 transition-opacity duration-300 blur-xl"></span>
-                                      <span className="relative z-10">{plan.cta}</span>
-                                    </Link>
-                                  )}
-                                </Button>
-                              </CardFooter>
-                            </Card>
-                          </div>
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                  </Carousel>
+                <div className="relative px-4 sm:px-12">
+                  {/* Show carousel only on mobile */}
+                  <div className="md:hidden">
+                    <Carousel 
+                      className="w-full max-w-5xl mx-auto" 
+                      setApi={setCarousel}
+                      opts={{
+                        align: "start",
+                        slidesToScroll: 1,
+                        containScroll: "trimSnaps"
+                      }}
+                    >
+                      <CarouselContent className="-ml-2">
+                        {telegramPlans.map((plan, index) => (
+                          <CarouselItem key={plan.name} className="pl-2 basis-full">
+                            <div className="p-1">
+                              <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col min-h-[600px] h-full shadow-neon">
+                                <CardHeader>
+                                  <CardTitle className="text-2xl font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
+                                  <CardDescription className="text-[#1A1A40]/80 text-center">{plan.description}</CardDescription>
+                                </CardHeader>
+                                <CardContent className="flex-grow overflow-y-auto">
+                                  <div className="flex items-baseline justify-center mb-6 h-[40px]">
+                                    <span className="text-4xl font-extrabold text-[#1A1A40]">{plan.price}</span>
+                                    {plan.period && <span className="text-[#1A1A40]/80 ml-1">{plan.period}</span>}
+                                  </div>
+                                  <ul className="space-y-2 mb-6 pb-4 text-[#1A1A40]">
+                                    {plan.features.map((feature, index) => (
+                                      <li key={index} className="flex items-start">
+                                        <Check className="h-5 w-5 text-[#3A7D7B] mr-2 mt-0.5 flex-shrink-0" />
+                                        <span>{feature}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </CardContent>
+                                <CardFooter className="pt-6">
+                                  <Button 
+                                    asChild 
+                                    className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] shadow-neon-button transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
+                                  >
+                                    {plan.cta === "Contact Us" ? (
+                                      <a href="mailto:anjali@collab.land">
+                                        <span className="absolute inset-0 bg-gradient-to-r from-[#FFD700] to-[#FFC700] opacity-0 group-hover:opacity-50 transition-opacity duration-300 blur-xl"></span>
+                                        <span className="relative z-10">{plan.cta}</span>
+                                      </a>
+                                    ) : (
+                                      <Link href="https://cc.collab.land/login">
+                                        <span className="absolute inset-0 bg-gradient-to-r from-[#FFD700] to-[#FFC700] opacity-0 group-hover:opacity-50 transition-opacity duration-300 blur-xl"></span>
+                                        <span className="relative z-10">{plan.cta}</span>
+                                      </Link>
+                                    )}
+                                  </Button>
+                                </CardFooter>
+                              </Card>
+                            </div>
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                      {/* Mobile controls */}
+                      <div className="flex justify-center gap-2 mt-4">
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          className="h-8 w-8 bg-[#242457] border border-[#4A4A7E]"
+                          onClick={() => carousel?.scrollPrev()}
+                        >
+                          <ChevronLeft className="h-4 w-4 text-[#F5F1E6]" />
+                        </Button>
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          className="h-8 w-8 bg-[#242457] border border-[#4A4A7E]"
+                          onClick={() => carousel?.scrollNext()}
+                        >
+                          <ChevronRight className="h-4 w-4 text-[#F5F1E6]" />
+                        </Button>
+                      </div>
+                    </Carousel>
+                  </div>
+
+                  {/* Show grid layout for tablet and up */}
+                  <div className="hidden md:grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                    {telegramPlans.map((plan, index) => (
+                      <div key={plan.name} className="p-1 max-w-[400px] w-full mx-auto">
+                        <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col min-h-[600px] h-full shadow-neon">
+                          <CardHeader>
+                            <CardTitle className="text-2xl font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
+                            <CardDescription className="text-[#1A1A40]/80 text-center">{plan.description}</CardDescription>
+                          </CardHeader>
+                          <CardContent className="flex-grow overflow-y-auto">
+                            <div className="flex items-baseline justify-center mb-6 h-[40px]">
+                              <span className="text-4xl font-extrabold text-[#1A1A40]">{plan.price}</span>
+                              {plan.period && <span className="text-[#1A1A40]/80 ml-1">{plan.period}</span>}
+                            </div>
+                            <ul className="space-y-2 mb-6 pb-4 text-[#1A1A40]">
+                              {plan.features.map((feature, index) => (
+                                <li key={index} className="flex items-start">
+                                  <Check className="h-5 w-5 text-[#3A7D7B] mr-2 mt-0.5 flex-shrink-0" />
+                                  <span>{feature}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </CardContent>
+                          <CardFooter className="pt-6">
+                            <Button 
+                              asChild 
+                              className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] shadow-neon-button transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
+                            >
+                              {plan.cta === "Contact Us" ? (
+                                <a href="mailto:anjali@collab.land">
+                                  <span className="absolute inset-0 bg-gradient-to-r from-[#FFD700] to-[#FFC700] opacity-0 group-hover:opacity-50 transition-opacity duration-300 blur-xl"></span>
+                                  <span className="relative z-10">{plan.cta}</span>
+                                </a>
+                              ) : (
+                                <Link href="https://cc.collab.land/login">
+                                  <span className="absolute inset-0 bg-gradient-to-r from-[#FFD700] to-[#FFC700] opacity-0 group-hover:opacity-50 transition-opacity duration-300 blur-xl"></span>
+                                  <span className="relative z-10">{plan.cta}</span>
+                                </Link>
+                              )}
+                            </Button>
+                          </CardFooter>
+                        </Card>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </TabsContent>
             </Tabs>
           </div>
         </section>
         {/* ----- Supported Chains and Wallets Style----- */}
-        <section className="bg-[#1A1A40] py-16 px-4 sm:px-6 lg:px-8 border-t-2 border-b-2 border-[#3A3A6E]">
-          <div className="max-w-7xl mx-auto">
-            <div className="mb-12 pb-12 border-b-2 border-[#3A3A6E]">
-              <h2 className="text-3xl font-bold text-center mb-8 text-[#F5F1E6] text-shadow-glow">Supported Chains and Networks</h2>
-              <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 list-disc list-inside">
+        <section className="bg-[#1A1A40] py-12 px-4 sm:px-6 lg:px-8 border-t-2 border-b-2 border-[#3A3A6E]">
+          <div className="max-w-5xl mx-auto flex flex-col items-center">
+            <div className="mb-8 pb-8 border-b-2 border-[#3A3A6E] w-full max-w-4xl">
+              <h2 className="text-2xl font-bold text-center mb-6 text-[#F5F1E6] text-shadow-glow">Supported Chains and Networks</h2>
+              <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-8 sm:px-12">
                 {supportedChains.map((chain, index) => (
-                  <li key={index} className="text-[#B8B9BE]">
-                    {chain}
+                  <li key={index} className="text-[#B8B9BE] flex items-center pl-4">
+                    <div className="w-2 h-2 rotate-45 bg-[#FFC700] mr-2 flex-shrink-0 transform -translate-y-[1px]" />
+                    <span className="line-clamp-2">{chain}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div>
-              <h2 className="text-3xl font-bold text-center mb-8 text-[#F5F1E6] text-shadow-glow">Supported Wallets and Verifications</h2>
-              <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 list-disc list-inside">
+            <div className="w-full max-w-4xl">
+              <h2 className="text-2xl font-bold text-center mb-6 text-[#F5F1E6] text-shadow-glow">Supported Wallets and Verifications</h2>
+              <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-8 sm:px-12">
                 {supportedWallets.map((wallet, index) => (
-                  <li key={index} className="text-[#B8B9BE]">
-                    {wallet}
+                  <li key={index} className="text-[#B8B9BE] flex items-center pl-4">
+                    <div className="w-2 h-2 rotate-45 bg-[#FFC700] mr-2 flex-shrink-0 transform -translate-y-[1px]" />
+                    <span className="line-clamp-2">{wallet}</span>
                   </li>
                 ))}
               </ul>
@@ -392,55 +725,60 @@ export function PricingPage() {
           </div>
         </section>
         {/* Add the comparison table right after the supported chains and wallets section, but before the FAQs */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <h2 className="text-3xl font-bold text-center mb-12 text-[#F5F1E6]">Plans Comparison</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse rounded-lg overflow-hidden">
-              <thead>
-                <tr className="bg-[#FFC700]/95">
-                  <th className={`p-3 text-left font-semibold text-[#1A1A40] ${spaceMono.className}`}>FEATURES</th>
-                  {tiers.map((tier) => (
-                    <th key={tier} className={`p-3 text-center font-semibold text-[#1A1A40] ${spaceMono.className}`}>{tier}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {features.map((feature, index) => (
-                  <tr key={feature.name} className={index % 2 === 0 ? 'bg-[#F5F1E6]/95' : 'bg-[#F5F1E6]/90'}>
-                    <td className="p-3 font-medium text-[#1A1A40]">{feature.name}</td>
-                    {feature.values.map((value, i) => (
-                      <td key={i} className="p-3 text-center text-[#1A1A40]/80">
-                        {typeof value === 'boolean' ? (
-                          value ? (
-                            <Check className="inline-block w-5 h-5 text-[#3A7D7B]" />
-                          ) : (
-                            <X className="inline-block w-5 h-5 text-red-500" />
-                          )
-                        ) : (
-                          value
-                        )}
-                      </td>
+        <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <h2 className="text-2xl font-bold text-center mb-8 text-[#F5F1E6]">Plans Comparison</h2>
+          <div className="hidden md:block overflow-x-auto">
+            <div className="md:max-w-[720px] lg:max-w-none mx-auto">
+              <table className="w-full md:min-w-0 lg:min-w-[800px] rounded-lg overflow-hidden">
+                <thead>
+                  <tr className="bg-[#FFC700]/95">
+                    <th className={`p-2 md:p-3 text-left font-semibold text-[#1A1A40] ${spaceMono.className} first:rounded-tl-lg md:w-[35%] lg:w-auto text-sm md:text-base`}>FEATURES</th>
+                    {tiers.map((tier, index) => (
+                      <th key={tier} className={`p-2 md:p-3 text-center font-semibold text-[#1A1A40] ${spaceMono.className} md:w-[13%] lg:w-auto text-sm md:text-base ${
+                        index === tiers.length - 1 ? 'rounded-tr-lg' : ''
+                      }`}>{tier}</th>
                     ))}
                   </tr>
-                ))}
-                <tr className={features.length % 2 === 0 ? 'bg-[#F5F1E6]/95' : 'bg-[#F5F1E6]/90'}>
-                  <td className="p-3 font-semibold text-[#1A1A40]">Monthly Price</td>
-                  {prices.map((price, index) => (
-                    <td key={index} className="p-3 text-center font-semibold text-[#1A1A40]">{price}</td>
+                </thead>
+                <tbody>
+                  {/* Update cell padding in tbody too */}
+                  {features.map((feature, index) => (
+                    <tr key={feature.name} className={index % 2 === 0 ? 'bg-[#F5F1E6]/95' : 'bg-[#F5F1E6]/90'}>
+                      <td className="p-2 md:p-3 font-medium text-[#1A1A40] text-sm md:text-base">{feature.name}</td>
+                      {feature.values.map((value, i) => (
+                        <td key={i} className="p-2 md:p-3 text-center text-[#1A1A40]/80 text-sm md:text-base">
+                          {typeof value === 'boolean' ? (
+                            value ? (
+                              <Check className="inline-block w-5 h-5 text-[#3A7D7B]" />
+                            ) : (
+                              <X className="inline-block w-5 h-5 text-red-500" />
+                            )
+                          ) : (
+                            value
+                          )}
+                        </td>
+                      ))}
+                    </tr>
                   ))}
-                </tr>
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
-        {/* ----- FAQs Style----- */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#1A1A40] border-t-2 border-b-2 border-[#3A3A6E] relative">
+        {/* FAQ Section */}
+        <section className="py-12 px-4 sm:px-6 lg:px-8 bg-[#1A1A40] border-t-2 border-b-2 border-[#3A3A6E] relative">
           <div 
-            className="absolute right-[80px] top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-contain bg-no-repeat bg-right" 
-            style={{ backgroundImage: 'url("/2.png")' }}
+            className="absolute inset-0 opacity-40"
+            style={{ 
+              backgroundImage: 'url("/Hexagons-4.svg")',
+              backgroundSize: '50%',
+              backgroundPosition: '120% center',
+              backgroundRepeat: 'no-repeat',
+            }} 
           />
+          
           <div className="max-w-3xl mx-auto relative z-10">
-            <h2 className="text-3xl font-bold text-center mb-8 text-[#F5F1E6] text-shadow-glow">
+            <h2 className="text-2xl font-bold text-center mb-6 text-[#F5F1E6] text-shadow-glow">
               Frequently Asked Questions
             </h2>
             <Accordion type="single" collapsible className="space-y-4">
@@ -467,7 +805,8 @@ export function PricingPage() {
         </section>
       </main>
       {/* Footer section with privacy policy and terms of service links */}
-      <footer className="bg-[#FFC700] text-[#1A1A40] py-2 px-6">
+      <footer className="bg-[#FFC700] text-[#1A1A40] py-2 px-6 shadow-[0_-5px_14px_rgba(0,0,0,0.2)] relative">
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#1A1A40] to-transparent" />
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex gap-6">
             <Link href="https://www.collab.land/privacy-policy" className={`hover:underline ${spaceMono.className} text-sm font-bold`}>
