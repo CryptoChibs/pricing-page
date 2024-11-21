@@ -279,7 +279,7 @@ export function PricingPage() {
                         px-3 py-2.5 
                         rounded-lg
                         hover:bg-black/10 
-                        flex items-center justify-center
+                        flex items-center justify-center 
                         relative
                         group
                         border border-transparent
@@ -290,6 +290,7 @@ export function PricingPage() {
                         before:via-white/5 before:to-transparent 
                         before:opacity-0 before:group-hover:opacity-100
                         before:transition-opacity before:duration-300
+                        text-center 
                       "
                     >
                       <span className="relative z-10 group-hover:text-[#1A1A40]/80">{item.label}</span>
@@ -510,22 +511,22 @@ export function PricingPage() {
               </TabsList>
               <TabsContent value="discord">
                 <div className="relative px-8">
-                  <Carousel className="w-full max-w-4xl mx-auto">
+                  <Carousel className="w-full max-w-6xl mx-auto">
                     <CarouselContent>
                       {discordPlans.map((plan) => (
                         <CarouselItem key={plan.name} className="md:basis-1/2 lg:basis-1/3">
                           <div className="p-1">
-                            <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[500px] shadow-neon">
-                              <CardHeader>
+                            <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col w-full max-w-[350px] min-h-[605px] max-h-[605px] mx-auto shadow-neon">
+                              <CardHeader className="flex-none">
                                 <CardTitle className="text-2xl font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
                                 <CardDescription className="text-[#1A1A40]/80 text-center">{plan.description}</CardDescription>
                               </CardHeader>
-                              <CardContent className="flex-grow overflow-y-auto">
-                                <div className="flex items-baseline justify-center mb-6 h-[40px]">
+                              <CardContent className="flex-grow">
+                                <div className="flex items-baseline justify-center mb-6">
                                   <span className="text-4xl font-extrabold text-[#1A1A40]">{plan.price}</span>
                                   {plan.period && <span className="text-[#1A1A40]/80 ml-1">{plan.period}</span>}
                                 </div>
-                                <ul className="space-y-2 mb-6 pb-4 text-[#1A1A40]">
+                                <ul className="space-y-2 mb-6 text-[#1A1A40]">
                                   {plan.features.map((feature, index) => (
                                     <li key={index} className="flex items-start">
                                       <Check className="h-5 w-5 text-[#3A7D7B] mr-2 mt-0.5 flex-shrink-0" />
@@ -534,7 +535,7 @@ export function PricingPage() {
                                   ))}
                                 </ul>
                               </CardContent>
-                              <CardFooter className="pt-6">
+                              <CardFooter className="flex-none pt-6">
                                 <Button 
                                   asChild 
                                   className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] shadow-neon-button transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
@@ -583,17 +584,17 @@ export function PricingPage() {
                         {telegramPlans.map((plan, index) => (
                           <CarouselItem key={plan.name} className="pl-2 basis-full">
                             <div className="p-1">
-                              <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col min-h-[600px] h-full shadow-neon">
-                                <CardHeader>
+                              <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col w-full max-w-[360px] min-h-[650px] mx-auto shadow-neon">
+                                <CardHeader className="flex-none">
                                   <CardTitle className="text-2xl font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
                                   <CardDescription className="text-[#1A1A40]/80 text-center">{plan.description}</CardDescription>
                                 </CardHeader>
-                                <CardContent className="flex-grow overflow-y-auto">
-                                  <div className="flex items-baseline justify-center mb-6 h-[40px]">
+                                <CardContent className="flex-grow">
+                                  <div className="flex items-baseline justify-center mb-6">
                                     <span className="text-4xl font-extrabold text-[#1A1A40]">{plan.price}</span>
                                     {plan.period && <span className="text-[#1A1A40]/80 ml-1">{plan.period}</span>}
                                   </div>
-                                  <ul className="space-y-2 mb-6 pb-4 text-[#1A1A40]">
+                                  <ul className="space-y-2 mb-6 text-[#1A1A40]">
                                     {plan.features.map((feature, index) => (
                                       <li key={index} className="flex items-start">
                                         <Check className="h-5 w-5 text-[#3A7D7B] mr-2 mt-0.5 flex-shrink-0" />
@@ -602,7 +603,7 @@ export function PricingPage() {
                                     ))}
                                   </ul>
                                 </CardContent>
-                                <CardFooter className="pt-6">
+                                <CardFooter className="flex-none pt-6">
                                   <Button 
                                     asChild 
                                     className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] shadow-neon-button transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
@@ -650,18 +651,18 @@ export function PricingPage() {
                   {/* Show grid layout for tablet and up */}
                   <div className="hidden md:grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
                     {telegramPlans.map((plan, index) => (
-                      <div key={plan.name} className="p-1 max-w-[400px] w-full mx-auto">
-                        <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col min-h-[600px] h-full shadow-neon">
-                          <CardHeader>
+                      <div key={plan.name} className="p-1 max-w-[360px] w-full mx-auto">
+                        <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col w-full max-w-[360px] min-h-[650px] mx-auto shadow-neon">
+                          <CardHeader className="flex-none">
                             <CardTitle className="text-2xl font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
                             <CardDescription className="text-[#1A1A40]/80 text-center">{plan.description}</CardDescription>
                           </CardHeader>
-                          <CardContent className="flex-grow overflow-y-auto">
-                            <div className="flex items-baseline justify-center mb-6 h-[40px]">
+                          <CardContent className="flex-grow">
+                            <div className="flex items-baseline justify-center mb-6">
                               <span className="text-4xl font-extrabold text-[#1A1A40]">{plan.price}</span>
                               {plan.period && <span className="text-[#1A1A40]/80 ml-1">{plan.period}</span>}
                             </div>
-                            <ul className="space-y-2 mb-6 pb-4 text-[#1A1A40]">
+                            <ul className="space-y-2 mb-6 text-[#1A1A40]">
                               {plan.features.map((feature, index) => (
                                 <li key={index} className="flex items-start">
                                   <Check className="h-5 w-5 text-[#3A7D7B] mr-2 mt-0.5 flex-shrink-0" />
@@ -670,7 +671,7 @@ export function PricingPage() {
                               ))}
                             </ul>
                           </CardContent>
-                          <CardFooter className="pt-6">
+                          <CardFooter className="flex-none pt-6">
                             <Button 
                               asChild 
                               className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] shadow-neon-button transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
@@ -805,18 +806,41 @@ export function PricingPage() {
         </section>
       </main>
       {/* Footer section with privacy policy and terms of service links */}
-      <footer className="bg-[#FFC700] text-[#1A1A40] py-2 px-6 shadow-[0_-5px_14px_rgba(0,0,0,0.2)] relative">
-        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#1A1A40] to-transparent" />
-        <div className="container mx-auto flex justify-between items-center">
-          <div className="flex gap-6">
-            <Link href="https://www.collab.land/privacy-policy" className={`hover:underline ${spaceMono.className} text-sm font-bold`}>
-              Privacy Policy
-            </Link>
-            <Link href="https://www.collab.land/terms-of-service" className={`hover:underline ${spaceMono.className} text-sm font-bold`}>
-              Terms of Service
-            </Link>
+      <footer className="bg-[#FFC700] py-4">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col items-center space-y-4 sm:flex-row sm:justify-between sm:space-y-0">
+            <nav className="flex space-x-6">
+              <Link href="https://www.collab.land/privacy-policy" className={`text-[#1A1A40] hover:text-[#1A1A40]/80 transition-colors text-sm ${spaceMono.className} font-bold`}>
+                Privacy Policy
+              </Link>
+              <Link href="https://www.collab.land/terms-of-service" className={`text-[#1A1A40] hover:text-[#1A1A40]/80 transition-colors text-sm ${spaceMono.className} font-bold`}>
+                Terms
+              </Link>
+            </nav>
+            <div className="flex space-x-4">
+              <Link href="https://linktr.ee/collab_land_" passHref>
+                <Button size="icon" variant="ghost" className="hover:bg-transparent hover:text-[#1A1A40]/80">
+                  <Image src="/LinktreeIcon.svg" alt="Linktree" width={20} height={20} />
+                  <span className="sr-only">Linktree</span>
+                </Button>
+              </Link>
+              <Link href="https://discord.gg/collabland" passHref>
+                <Button size="icon" variant="ghost" className="hover:bg-transparent hover:text-[#1A1A40]/80">
+                  <Image src="/DiscordIcon.svg" alt="Discord" width={20} height={20} />
+                  <span className="sr-only">Discord</span>
+                </Button>
+              </Link>
+              <Link href="https://twitter.com/Collab_Land_" passHref>
+                <Button size="icon" variant="ghost" className="hover:bg-transparent hover:text-[#1A1A40]/80">
+                  <Image src="/XIcon.svg" alt="X (formerly Twitter)" width={20} height={20} />
+                  <span className="sr-only">X (formerly Twitter)</span>
+                </Button>
+              </Link>
+            </div>
+            <p className={`text-[#1A1A40] text-sm ${spaceMono.className} font-bold`}>
+              Collab.Land® 2024
+            </p>
           </div>
-          <div className={`text-sm font-bold ${spaceMono.className}`}>©Collab.Land 2024</div>
         </div>
       </footer>
     </div>

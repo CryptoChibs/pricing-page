@@ -70,6 +70,10 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      boxShadow: {
+        'neon': '0 0 15px rgba(74, 74, 126, 0.2), 0 0 30px rgba(74, 74, 126, 0.15)',
+        'neon-hover': '0 0 20px rgba(74, 74, 126, 0.3), 0 0 40px rgba(74, 74, 126, 0.2)',
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
