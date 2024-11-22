@@ -163,17 +163,75 @@ const faqs = [
 ]
 // ----- Supported Chains -----
 const supportedChains = [
-  "Amoy (Polygon testnet)", "Arbitrum Nova", "Arbitrum One", "Astar zkEVM", "Avalanche", "BASE", "Bitlayer", "Blast",
-  "Bitcoin", "BSC", "Celo", "DOS Chain", "Eluvio", "Ethereum Mainnet", "Flow", "Friend.Tech", "Gitcoin Passport",
-  "Gnosis", "Immutable X", "Kusama", "Linea", "Loopring", "Moonbeam", "NEAR", "Nifty", "Optimism", "Palm", "Polkadot",
-  "Polygon", "Q Chain", "Ronin", "SEI", "Sepolia (Ethereum testnet)", "Shibarium", "Solana", "Tezos", "Vitruveo", "XRPL"
+  { name: "Amoy (Polygon testnet)", url: "https://polygon.technology/blog/introducing-the-amoy-testnet-for-polygon-pos" },
+  { name: "Arbitrum Nova", url: "https://nova.arbitrum.io/" },
+  { name: "Arbitrum One", url: "https://arbitrum.io/" },
+  { name: "Astar zkEVM", url: "https://astar.network/" },
+  { name: "Avalanche", url: "https://avax.network" },
+  { name: "BASE", url: "https://base.org" },
+  { name: "Bitcoin", url: "https://bitcoin.org/bitcoin.pdf" },
+  { name: "Bitlayer", url: "https://www.bitlayer.org/" },
+  { name: "Blast", url: "https://blast.io" },
+  { name: "BSC", url: "https://www.binance.com/" },
+  { name: "Celo", url: "https://celo.org" },
+  { name: "DOS Chain", url: "https://doschain.com/" },
+  { name: "Eluvio", url: "https://eluv.io" },
+  { name: "Ethereum Mainnet", url: "https://ethereum.org/" },
+  { name: "Flow", url: "https://flow.com/" },
+  { name: "Gitcoin Passport", url: "https://www.passport.xyz/" },
+  { name: "Gnosis", url: "https://www.gnosis.io/" },
+  { name: "Immutable X", url: "https://www.immutable.com/products/immutable-x" },
+  { name: "Kusama", url: "https://kusama.network/" },
+  { name: "Linea", url: "https://linea.build/" },
+  { name: "Loopring", url: "https://loopring.io" },
+  { name: "Moonbeam", url: "https://moonbeam.network/" },
+  { name: "NEAR", url: "https://near.org" },
+  { name: "Nifty", url: "https://www.niftygateway.com/" },
+  { name: "Optimism", url: "https://www.optimism.io/" },
+  { name: "Palm", url: "https://palm.network/" },
+  { name: "Polkadot", url: "https://polkadot.com/" },
+  { name: "Polygon", url: "https://polygon.technology/" },
+  { name: "Q Chain", url: "https://q.foundation/" },
+  { name: "Ronin", url: "https://roninchain.com" },
+  { name: "SEI", url: "https://www.sei.io/" },
+  { name: "Sepolia (Ethereum testnet)", url: "https://sepolia.dev/" },
+  { name: "Shibarium", url: "https://shibarium.shib.io/" },
+  { name: "Solana", url: "https://solana.com" },
+  { name: "Tezos", url: "https://tezos.com/" },
+  { name: "Vitruveo", url: "https://www.vitruveo.xyz/" },
+  { name: "XRPL", url: "https://xrpl.org" }
 ]
 // ----- Supported Wallets -----
 const supportedWallets = [
-  "Bitski", "Blocto", "Coinbase Wallet", "Dapper", "Delegate", "Eluvio", "Fortmatic", "Friend.Tech", "ImmutableX",
-  "Leather", "Ledger", "Loopring", "MEWconnect", "MetaMask", "Near", "Nifty Gateway", "OpenSea", "Opolis", "Phantom",
-  "Phantom EVM", "Ronin", "Roll", "Safe", "Talisman", "Temple (Tezos)", "TokenProof", "Trezor", "Venly", "WalletConnect(V2)",
-  "Xumm", "Xverse"
+  { name: "Bitski", url: "https://www.bitski.com/" },
+  { name: "Blocto", url: "https://blocto.app/" },
+  { name: "Coinbase Wallet", url: "https://www.coinbase.com/wallet" },
+  { name: "Dapper", url: "https://www.dapperlabs.com/" },
+  { name: "Delegate", url: "https://delegate.xyz" },
+  { name: "Eluvio", url: "https://eluv.io/media-wallet" },
+  { name: "Fortmatic", url: "https://fortmatic.com/" },
+  { name: "ImmutableX", url: "https://www.immutable.com/" },
+  { name: "Ledger", url: "https://www.ledger.com/" },
+  { name: "Loopring", url: "https://loopring.org/" },
+  { name: "MEWconnect", url: "https://www.myetherwallet.com/" },
+  { name: "MetaMask", url: "https://metamask.io/" },
+  { name: "NEAR", url: "https://near.org/" },
+  { name: "Nifty Gateway", url: "https://niftygateway.com/" },
+  { name: "OpenSea", url: "https://opensea.io/" },
+  { name: "Opolis", url: "https://opolis.co/" },
+  { name: "Phantom", url: "https://phantom.app/" },
+  { name: "Phantom EVM", url: "https://phantom.app/" },
+  { name: "Ronin", url: "https://roninchain.com/" },
+  { name: "Roll", url: "https://demo.tryroll.com" },
+  { name: "Safe", url: "https://gnosis-safe.io/" },
+  { name: "Talisman", url: "https://talisman.xyz/" },
+  { name: "Temple (Tezos)", url: "https://templewallet.com/" },
+  { name: "TokenProof", url: "https://tokenproof.xyz" },
+  { name: "Trezor", url: "https://trezor.io/" },
+  { name: "Venly", url: "https://venly.io/" },
+  { name: "WalletConnect(V2)", url: "https://walletconnect.network" },
+  { name: "Xumm", url: "https://xumm.app/" },
+  { name: "Xverse", url: "https://xverse.app/" }
 ]
 
 // ----- Comparison Data -----
@@ -775,25 +833,39 @@ export function PricingPage() {
           <div className="max-w-5xl mx-auto flex flex-col items-center">
             <div className="mb-8 pb-8 border-b-2 border-[#3A3A6E] w-full max-w-4xl">
               <h2 className="text-2xl font-bold text-center mb-6 text-[#F5F1E6] text-shadow-glow">Supported Chains and Networks</h2>
-              <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-8 sm:px-12">
+              <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 px-8 sm:px-12">
                 {supportedChains.map((chain, index) => (
-                  <li key={index} className="text-[#B8B9BE] flex items-center pl-4">
+                  <div key={index} className="text-[#B8B9BE] flex items-center pl-4 mb-4">
                     <div className="w-2 h-2 rotate-45 bg-[#FFC700] mr-2 flex-shrink-0 transform -translate-y-[1px]" />
-                    <span className="line-clamp-2">{chain}</span>
-                  </li>
+                    <a 
+                      href={chain.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="line-clamp-2 hover:text-[#FFC700] transition-colors"
+                    >
+                      {chain.name}
+                    </a>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
             <div className="w-full max-w-4xl">
               <h2 className="text-2xl font-bold text-center mb-6 text-[#F5F1E6] text-shadow-glow">Supported Wallets and Verifications</h2>
-              <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-8 sm:px-12">
+              <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 px-8 sm:px-12">
                 {supportedWallets.map((wallet, index) => (
-                  <li key={index} className="text-[#B8B9BE] flex items-center pl-4">
+                  <div key={index} className="text-[#B8B9BE] flex items-center pl-4 mb-4">
                     <div className="w-2 h-2 rotate-45 bg-[#FFC700] mr-2 flex-shrink-0 transform -translate-y-[1px]" />
-                    <span className="line-clamp-2">{wallet}</span>
-                  </li>
+                    <a 
+                      href={wallet.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="line-clamp-2 hover:text-[#FFC700] transition-colors"
+                    >
+                      {wallet.name}
+                    </a>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </section>
