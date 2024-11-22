@@ -559,48 +559,54 @@ export function PricingPage() {
               No hidden fees. No surprises. Start for free and upgrade as you grow.
             </p>
             <Tabs defaultValue="discord" className="mb-12">
-              <TabsList className="grid w-full grid-cols-2 bg-[#F5F1E6] mb-6 p-1.5 h-12 rounded-lg relative overflow-hidden">
-                <TabsTrigger 
-                  value="discord" 
-                  className={`
-                    text-[#1F2232] 
-                    font-semibold 
-                    transition-all 
-                    duration-300
-                    text-lg 
-                    h-full
-                    relative
-                    rounded-md
-                    data-[state=active]:font-bold
-                    data-[state=active]:text-[#1F2232]
-                    data-[state=active]:bg-[#FFC700]
-                    data-[state=active]:shadow-[inset_0_0_12px_rgba(255,255,255,0.3)]
-                    z-10
-                  `}
-                >
-                  Discord
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="telegram" 
-                  className={`
-                    text-[#1F2232] 
-                    font-semibold 
-                    transition-all 
-                    duration-300
-                    text-lg 
-                    h-full
-                    relative
-                    rounded-md
-                    data-[state=active]:font-bold
-                    data-[state=active]:text-[#1F2232]
-                    data-[state=active]:bg-[#FFC700]
-                    data-[state=active]:shadow-[inset_0_0_12px_rgba(255,255,255,0.3)]
-                    z-10
-                  `}
-                >
-                  Telegram
-                </TabsTrigger>
-              </TabsList>
+              <div className="max-w-5xl mx-auto md:px-0 px-12">
+                <TabsList className="grid w-full grid-cols-2 bg-[#F5F1E6] mb-6 p-1.5 h-12 rounded-lg relative overflow-hidden">
+                  <TabsTrigger 
+                    value="discord" 
+                    className={`
+                      text-[#1F2232] 
+                      font-semibold 
+                      transition-all 
+                      duration-300
+                      text-lg 
+                      h-full
+                      relative
+                      rounded-md
+                      data-[state=active]:font-bold
+                      data-[state=active]:text-[#1F2232]
+                      data-[state=active]:bg-[#FFC700]
+                      data-[state=active]:shadow-[inset_0_0_12px_rgba(255,255,255,0.3)]
+                      hover:bg-[#FFC700]/20
+                      data-[state=active]:hover:bg-[#FFC700]
+                      z-10
+                    `}
+                  >
+                    Discord
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="telegram" 
+                    className={`
+                      text-[#1F2232] 
+                      font-semibold 
+                      transition-all 
+                      duration-300
+                      text-lg 
+                      h-full
+                      relative
+                      rounded-md
+                      data-[state=active]:font-bold
+                      data-[state=active]:text-[#1F2232]
+                      data-[state=active]:bg-[#FFC700]
+                      data-[state=active]:shadow-[inset_0_0_12px_rgba(255,255,255,0.3)]
+                      hover:bg-[#FFC700]/20
+                      data-[state=active]:hover:bg-[#FFC700]
+                      z-10
+                    `}
+                  >
+                    Telegram
+                  </TabsTrigger>
+                </TabsList>
+              </div>
               <TabsContent value="discord">
                 <div className="relative px-4 sm:px-12">
                   <div className="flex flex-col">
@@ -779,7 +785,7 @@ export function PricingPage() {
                   </div>
 
                   {/* Desktop grid layout remains unchanged */}
-                  <div className="hidden md:grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                  <div className="hidden md:grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
                     {telegramPlans.map((plan, index) => (
                       <div key={plan.name} className="p-1 max-w-[400px] w-full mx-auto">
                         <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[650px] shadow-neon">
@@ -1028,19 +1034,19 @@ export function PricingPage() {
             <div className="flex justify-center items-center space-x-4">
               <Link href="https://linktr.ee/collab_land_" passHref>
                 <Button size="icon" variant="ghost" className="hover:bg-transparent hover:text-[#1A1A40]/80 flex items-center justify-center">
-                  <Image src="/LinktreeIcon.svg" alt="Linktree" width={20} height={20} />
+                  <Image src="/LinktreeIcon.svg" alt="Linktree" width={24} height={24} />
                   <span className="sr-only">Linktree</span>
                 </Button>
               </Link>
               <Link href="https://discord.gg/collabland" passHref>
                 <Button size="icon" variant="ghost" className="hover:bg-transparent hover:text-[#1A1A40]/80 flex items-center justify-center">
-                  <Image src="/DiscordIcon.svg" alt="Discord" width={20} height={20} />
+                  <Image src="/DiscordIcon.svg" alt="Discord" width={24} height={24} />
                   <span className="sr-only">Discord</span>
                 </Button>
               </Link>
               <Link href="https://twitter.com/Collab_Land_" passHref>
                 <Button size="icon" variant="ghost" className="hover:bg-transparent hover:text-[#1A1A40]/80 flex items-center justify-center">
-                  <Image src="/XIcon.svg" alt="X (formerly Twitter)" width={20} height={20} />
+                  <Image src="/XIcon.svg" alt="X (formerly Twitter)" width={24} height={24} />
                   <span className="sr-only">X (formerly Twitter)</span>
                 </Button>
               </Link>
