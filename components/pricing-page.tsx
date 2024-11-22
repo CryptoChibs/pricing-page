@@ -610,12 +610,19 @@ export function PricingPage() {
               <TabsContent value="discord">
                 <div className="relative px-4 sm:px-12">
                   <div className="flex flex-col">
-                    <Carousel className="w-full max-w-5xl mx-auto" setApi={setCarousel}>
+                    <Carousel 
+                      className="w-full max-w-5xl mx-auto" 
+                      setApi={setCarousel}
+                      opts={{
+                        align: "start",
+                        slidesToScroll: 1
+                      }}
+                    >
                       <CarouselContent className="-ml-2 sm:-ml-4">
                         {discordPlans.map((plan, index) => (
                           <CarouselItem 
                             key={plan.name} 
-                            className="pl-2 sm:pl-4 basis-full md:basis-1/2 xl:basis-1/3"
+                            className="pl-2 sm:pl-4 basis-full sm:basis-full md:basis-1/2 xl:basis-1/3"
                           >
                             <div className="p-1">
                               <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[650px] shadow-neon">
@@ -716,13 +723,15 @@ export function PricingPage() {
                       setApi={setCarousel}
                       opts={{
                         align: "start",
-                        slidesToScroll: 1,
-                        containScroll: "trimSnaps"
+                        slidesToScroll: 1
                       }}
                     >
                       <CarouselContent className="-ml-2">
                         {telegramPlans.map((plan, index) => (
-                          <CarouselItem key={plan.name} className="pl-2 basis-full">
+                          <CarouselItem 
+                            key={plan.name} 
+                            className="pl-2 basis-full sm:basis-full"
+                          >
                             <div className="p-1">
                               <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[650px] shadow-neon">
                                 <CardHeader className="flex-none pt-6 px-6">
