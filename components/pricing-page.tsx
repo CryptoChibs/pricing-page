@@ -12,6 +12,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { CarouselApi } from "@/components/ui/carousel"
 
 // ----- Pricing Data (Discord)-----
 const discordPlans = [
@@ -199,18 +200,23 @@ const features = [
 const prices = ['Free', '$17.99', '$35', '$149', 'Custom']
 
 // ----- Pricing Page Component -----
-import { CarouselApi } from "@/components/ui/carousel"
 
 export function PricingPage() {
   const [carousel, setCarousel] = React.useState<CarouselApi>()
+
+  React.useEffect(() => {
+    if (!carousel) {
+      return
+    }
+  }, [carousel])
 
   return (
     <div className={`min-h-screen bg-[#1A1A40] text-[#E1E2E6] ${ibmPlexSans.className}`}>
       <header className="relative sticky top-0 z-50 shadow-lg after:absolute after:inset-0 after:shadow-[0_4px_12px_rgba(0,0,0,0.2)] after:pointer-events-none">
         <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#FFC700] to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#FFC700]/5 to-transparent pointer-events-none" />
-        <nav className="bg-[#F5F1E6] rounded-none px-8 py-2.5 flex items-center justify-between w-full relative h-[56px] z-50">
-          <div className="flex items-center">
+        <nav className="bg-[#F5F1E6] rounded-none px-2 sm:px-8 py-2.5 flex flex-col sm:flex-row items-center justify-between w-full relative min-h-[56px] z-50">
+          <div className="flex items-center mb-4 sm:mb-0">
             <Link href="/" className="transform transition-transform hover:scale-105">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/color_logo_wordmark-2Pg8pcGf6uxVyIG3c4fFeUeLrxDpEh.png"
@@ -222,7 +228,7 @@ export function PricingPage() {
               />
             </Link>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2 sm:gap-6 flex-wrap justify-center">
             <Popover>
               <PopoverTrigger asChild>
                 <Button 
@@ -495,101 +501,65 @@ export function PricingPage() {
               No hidden fees. No surprises. Start for free and upgrade as you grow.
             </p>
             <Tabs defaultValue="discord" className="mb-12">
-              <TabsList className="grid w-full grid-cols-2 bg-[#F5F1E6] mb-6 p-1 h-10">
+              <TabsList className="grid w-full grid-cols-2 bg-[#F5F1E6] mb-6 p-1.5 h-12 rounded-lg relative overflow-hidden">
                 <TabsTrigger 
                   value="discord" 
-                  className="data-[state=active]:bg-[#FFC700] text-[#1F2232] data-[state=active]:text-[#1F2232] font-semibold transition-colors text-lg h-full"
+                  className={`
+                    text-[#1F2232] 
+                    font-semibold 
+                    transition-all 
+                    duration-300
+                    text-lg 
+                    h-full
+                    relative
+                    rounded-md
+                    data-[state=active]:font-bold
+                    data-[state=active]:text-[#1F2232]
+                    data-[state=active]:bg-[#FFC700]
+                    data-[state=active]:shadow-[inset_0_0_12px_rgba(255,255,255,0.3)]
+                    z-10
+                  `}
                 >
-                  Discord 
+                  Discord
                 </TabsTrigger>
                 <TabsTrigger 
                   value="telegram" 
-                  className="data-[state=active]:bg-[#FFC700] text-[#1F2232] data-[state=active]:text-[#1F2232] font-semibold transition-colors text-lg h-full"
+                  className={`
+                    text-[#1F2232] 
+                    font-semibold 
+                    transition-all 
+                    duration-300
+                    text-lg 
+                    h-full
+                    relative
+                    rounded-md
+                    data-[state=active]:font-bold
+                    data-[state=active]:text-[#1F2232]
+                    data-[state=active]:bg-[#FFC700]
+                    data-[state=active]:shadow-[inset_0_0_12px_rgba(255,255,255,0.3)]
+                    z-10
+                  `}
                 >
-                  Telegram 
+                  Telegram
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="discord">
-                <div className="relative px-8">
-                  <Carousel className="w-full max-w-6xl mx-auto">
-                    <CarouselContent>
-                      {discordPlans.map((plan) => (
-                        <CarouselItem key={plan.name} className="md:basis-1/2 lg:basis-1/3">
-                          <div className="p-1">
-                            <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col w-full max-w-[350px] min-h-[605px] max-h-[605px] mx-auto shadow-neon">
-                              <CardHeader className="flex-none">
-                                <CardTitle className="text-2xl font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
-                                <CardDescription className="text-[#1A1A40]/80 text-center">{plan.description}</CardDescription>
-                              </CardHeader>
-                              <CardContent className="flex-grow">
-                                <div className="flex items-baseline justify-center mb-6">
-                                  <span className="text-4xl font-extrabold text-[#1A1A40]">{plan.price}</span>
-                                  {plan.period && <span className="text-[#1A1A40]/80 ml-1">{plan.period}</span>}
-                                </div>
-                                <ul className="space-y-2 mb-6 text-[#1A1A40]">
-                                  {plan.features.map((feature, index) => (
-                                    <li key={index} className="flex items-start">
-                                      <Check className="h-5 w-5 text-[#3A7D7B] mr-2 mt-0.5 flex-shrink-0" />
-                                      <span>{feature}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </CardContent>
-                              <CardFooter className="flex-none pt-6">
-                                <Button 
-                                  asChild 
-                                  className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] shadow-neon-button transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
-                                >
-                                  {plan.cta === "Contact Us" ? (
-                                    <a href="mailto:anjali@collab.land">
-                                      <span className="absolute inset-0 bg-gradient-to-r from-[#FFD700] to-[#FFC700] opacity-0 group-hover:opacity-50 transition-opacity duration-300 blur-xl"></span>
-                                      <span className="relative z-10">{plan.cta}</span>
-                                    </a>
-                                  ) : (
-                                    <Link href="https://cc.collab.land/login">
-                                      <span className="absolute inset-0 bg-gradient-to-r from-[#FFD700] to-[#FFC700] opacity-0 group-hover:opacity-50 transition-opacity duration-300 blur-xl"></span>
-                                      <span className="relative z-10">{plan.cta}</span>
-                                    </Link>
-                                  )}
-                                </Button>
-                              </CardFooter>
-                            </Card>
-                          </div>
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                    <CarouselPrevious className="absolute -left-12 top-1/2 transform -translate-y-1/2 bg-[#242457] border border-[#4A4A7E] hover:bg-[#3A3A6E] transition-colors rounded-full p-2">
-                      <ChevronLeft className="w-8 h-8 text-[#F5F1E6]" />
-                    </CarouselPrevious>
-                    <CarouselNext className="absolute -right-12 top-1/2 transform -translate-y-1/2 bg-[#242457] border border-[#4A4A7E] hover:bg-[#3A3A6E] transition-colors rounded-full p-2">
-                      <ChevronRight className="w-8 h-8 text-[#F5F1E6]" />
-                    </CarouselNext>
-                  </Carousel>
-                </div>
-              </TabsContent>
-              <TabsContent value="telegram">
                 <div className="relative px-4 sm:px-12">
-                  {/* Show carousel only on mobile */}
-                  <div className="md:hidden">
-                    <Carousel 
-                      className="w-full max-w-5xl mx-auto" 
-                      setApi={setCarousel}
-                      opts={{
-                        align: "start",
-                        slidesToScroll: 1,
-                        containScroll: "trimSnaps"
-                      }}
-                    >
-                      <CarouselContent className="-ml-2">
-                        {telegramPlans.map((plan, index) => (
-                          <CarouselItem key={plan.name} className="pl-2 basis-full">
+                  <div className="flex flex-col">
+                    <Carousel className="w-full max-w-5xl mx-auto" setApi={setCarousel}>
+                      <CarouselContent className="-ml-2 sm:-ml-4">
+                        {discordPlans.map((plan, index) => (
+                          <CarouselItem 
+                            key={plan.name} 
+                            className="pl-2 sm:pl-4 basis-full md:basis-1/2 xl:basis-1/3"
+                          >
                             <div className="p-1">
-                              <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col w-full max-w-[360px] min-h-[650px] mx-auto shadow-neon">
-                                <CardHeader className="flex-none">
+                              <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[650px] shadow-neon">
+                                <CardHeader className="flex-none pt-6 px-6">
                                   <CardTitle className="text-2xl font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
-                                  <CardDescription className="text-[#1A1A40]/80 text-center">{plan.description}</CardDescription>
+                                  <CardDescription className="text-[#1A1A40]/80 text-center min-h-[48px]">{plan.description}</CardDescription>
                                 </CardHeader>
-                                <CardContent className="flex-grow">
+                                <CardContent className="flex-grow px-6">
                                   <div className="flex items-baseline justify-center mb-6">
                                     <span className="text-4xl font-extrabold text-[#1A1A40]">{plan.price}</span>
                                     {plan.period && <span className="text-[#1A1A40]/80 ml-1">{plan.period}</span>}
@@ -598,12 +568,12 @@ export function PricingPage() {
                                     {plan.features.map((feature, index) => (
                                       <li key={index} className="flex items-start">
                                         <Check className="h-5 w-5 text-[#3A7D7B] mr-2 mt-0.5 flex-shrink-0" />
-                                        <span>{feature}</span>
+                                        <span className="text-sm sm:text-base">{feature}</span>
                                       </li>
                                     ))}
                                   </ul>
                                 </CardContent>
-                                <CardFooter className="flex-none pt-6">
+                                <CardFooter className="flex-none pb-6 px-6">
                                   <Button 
                                     asChild 
                                     className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] shadow-neon-button transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
@@ -626,38 +596,140 @@ export function PricingPage() {
                           </CarouselItem>
                         ))}
                       </CarouselContent>
-                      {/* Mobile controls */}
-                      <div className="flex justify-center gap-2 mt-4">
-                        <Button 
-                          variant="ghost" 
-                          size="icon" 
-                          className="h-8 w-8 bg-[#242457] border border-[#4A4A7E]"
+                      <CarouselPrevious className="
+                        hidden md:flex
+                        absolute 
+                        -left-4 md:-left-12 
+                        top-1/2 
+                        transform -translate-y-1/2 
+                        bg-[#242457] 
+                        border border-[#4A4A7E] 
+                        hover:bg-[#3A3A6E] 
+                        transition-colors 
+                        rounded-full 
+                        p-1 md:p-2
+                        scale-75 md:scale-100
+                      "/>
+                      <CarouselNext className="
+                        hidden md:flex
+                        absolute 
+                        -right-4 md:-right-12 
+                        top-1/2 
+                        transform -translate-y-1/2 
+                        bg-[#242457] 
+                        border border-[#4A4A7E] 
+                        hover:bg-[#3A3A6E] 
+                        transition-colors 
+                        rounded-full 
+                        p-1 md:p-2
+                        scale-75 md:scale-100
+                      "/>
+                    </Carousel>
+
+                    <div className="flex justify-center gap-4 mt-6 md:hidden">
+                      <button
+                        onClick={() => carousel?.scrollPrev()}
+                        className="bg-[#242457] border border-[#4A4A7E] hover:bg-[#3A3A6E] rounded-full p-3 transition-colors"
+                      >
+                        <ChevronLeft className="w-6 h-6 text-[#F5F1E6]" />
+                      </button>
+                      <button
+                        onClick={() => carousel?.scrollNext()}
+                        className="bg-[#242457] border border-[#4A4A7E] hover:bg-[#3A3A6E] rounded-full p-3 transition-colors"
+                      >
+                        <ChevronRight className="w-6 h-6 text-[#F5F1E6]" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+              <TabsContent value="telegram">
+                <div className="relative px-4 sm:px-12">
+                  {/* Show carousel only on mobile */}
+                  <div className="md:hidden">
+                    <Carousel 
+                      className="w-full max-w-5xl mx-auto" 
+                      setApi={setCarousel}
+                      opts={{
+                        align: "start",
+                        slidesToScroll: 1,
+                        containScroll: "trimSnaps"
+                      }}
+                    >
+                      <CarouselContent className="-ml-2">
+                        {telegramPlans.map((plan, index) => (
+                          <CarouselItem key={plan.name} className="pl-2 basis-full">
+                            <div className="p-1">
+                              <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[650px] shadow-neon">
+                                <CardHeader className="flex-none pt-6 px-6">
+                                  <CardTitle className="text-2xl font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
+                                  <CardDescription className="text-[#1A1A40]/80 text-center min-h-[48px]">{plan.description}</CardDescription>
+                                </CardHeader>
+                                <CardContent className="flex-grow px-6">
+                                  <div className="flex items-baseline justify-center mb-6">
+                                    <span className="text-4xl font-extrabold text-[#1A1A40]">{plan.price}</span>
+                                    {plan.period && <span className="text-[#1A1A40]/80 ml-1">{plan.period}</span>}
+                                  </div>
+                                  <ul className="space-y-2 mb-6 text-[#1A1A40]">
+                                    {plan.features.map((feature, index) => (
+                                      <li key={index} className="flex items-start">
+                                        <Check className="h-5 w-5 text-[#3A7D7B] mr-2 mt-0.5 flex-shrink-0" />
+                                        <span className="text-sm sm:text-base">{feature}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </CardContent>
+                                <CardFooter className="flex-none pb-6 px-6">
+                                  <Button 
+                                    asChild 
+                                    className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] shadow-neon-button transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
+                                  >
+                                    {plan.cta === "Contact Us" ? (
+                                      <a href="mailto:anjali@collab.land">
+                                        <span className="absolute inset-0 bg-gradient-to-r from-[#FFD700] to-[#FFC700] opacity-0 group-hover:opacity-50 transition-opacity duration-300 blur-xl"></span>
+                                        <span className="relative z-10">{plan.cta}</span>
+                                      </a>
+                                    ) : (
+                                      <Link href="https://cc.collab.land/login">
+                                        <span className="absolute inset-0 bg-gradient-to-r from-[#FFD700] to-[#FFC700] opacity-0 group-hover:opacity-50 transition-opacity duration-300 blur-xl"></span>
+                                        <span className="relative z-10">{plan.cta}</span>
+                                      </Link>
+                                    )}
+                                  </Button>
+                                </CardFooter>
+                              </Card>
+                            </div>
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                      {/* Mobile controls for Telegram */}
+                      <div className="flex justify-center gap-4 mt-6">
+                        <button
                           onClick={() => carousel?.scrollPrev()}
+                          className="bg-[#242457] border border-[#4A4A7E] hover:bg-[#3A3A6E] rounded-full p-3 transition-colors"
                         >
-                          <ChevronLeft className="h-4 w-4 text-[#F5F1E6]" />
-                        </Button>
-                        <Button 
-                          variant="ghost" 
-                          size="icon" 
-                          className="h-8 w-8 bg-[#242457] border border-[#4A4A7E]"
+                          <ChevronLeft className="w-6 h-6 text-[#F5F1E6]" />
+                        </button>
+                        <button
                           onClick={() => carousel?.scrollNext()}
+                          className="bg-[#242457] border border-[#4A4A7E] hover:bg-[#3A3A6E] rounded-full p-3 transition-colors"
                         >
-                          <ChevronRight className="h-4 w-4 text-[#F5F1E6]" />
-                        </Button>
+                          <ChevronRight className="w-6 h-6 text-[#F5F1E6]" />
+                        </button>
                       </div>
                     </Carousel>
                   </div>
 
-                  {/* Show grid layout for tablet and up */}
+                  {/* Desktop grid layout remains unchanged */}
                   <div className="hidden md:grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
                     {telegramPlans.map((plan, index) => (
-                      <div key={plan.name} className="p-1 max-w-[360px] w-full mx-auto">
-                        <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col w-full max-w-[360px] min-h-[650px] mx-auto shadow-neon">
-                          <CardHeader className="flex-none">
+                      <div key={plan.name} className="p-1 max-w-[400px] w-full mx-auto">
+                        <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[650px] shadow-neon">
+                          <CardHeader className="flex-none pt-6 px-6">
                             <CardTitle className="text-2xl font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
-                            <CardDescription className="text-[#1A1A40]/80 text-center">{plan.description}</CardDescription>
+                            <CardDescription className="text-[#1A1A40]/80 text-center min-h-[48px]">{plan.description}</CardDescription>
                           </CardHeader>
-                          <CardContent className="flex-grow">
+                          <CardContent className="flex-grow px-6">
                             <div className="flex items-baseline justify-center mb-6">
                               <span className="text-4xl font-extrabold text-[#1A1A40]">{plan.price}</span>
                               {plan.period && <span className="text-[#1A1A40]/80 ml-1">{plan.period}</span>}
@@ -666,12 +738,12 @@ export function PricingPage() {
                               {plan.features.map((feature, index) => (
                                 <li key={index} className="flex items-start">
                                   <Check className="h-5 w-5 text-[#3A7D7B] mr-2 mt-0.5 flex-shrink-0" />
-                                  <span>{feature}</span>
+                                  <span className="text-sm sm:text-base">{feature}</span>
                                 </li>
                               ))}
                             </ul>
                           </CardContent>
-                          <CardFooter className="flex-none pt-6">
+                          <CardFooter className="flex-none pb-6 px-6">
                             <Button 
                               asChild 
                               className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] shadow-neon-button transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
@@ -726,8 +798,10 @@ export function PricingPage() {
           </div>
         </section>
         {/* Add the comparison table right after the supported chains and wallets section, but before the FAQs */}
-        <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <h2 className="text-2xl font-bold text-center mb-8 text-[#F5F1E6]">Plans Comparison</h2>
+          
+          {/* Desktop Table */}
           <div className="hidden md:block overflow-x-auto">
             <div className="md:max-w-[720px] lg:max-w-none mx-auto">
               <table className="w-full md:min-w-0 lg:min-w-[800px] rounded-lg overflow-hidden">
@@ -765,17 +839,68 @@ export function PricingPage() {
               </table>
             </div>
           </div>
+
+          {/* Mobile Accordion */}
+          <div className="md:hidden">
+            <Accordion type="single" collapsible className="space-y-4">
+              {features.map((feature, index) => (
+                <AccordionItem 
+                  key={index} 
+                  value={`feature-${index}`}
+                  className="bg-[#F5F1E6]/95 rounded-lg border-2 border-[#4A4A7E]"
+                >
+                  <AccordionTrigger className="px-4 py-3 text-[#1A1A40] font-medium">
+                    {feature.name}
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="px-4 pb-4 space-y-2">
+                      {tiers.map((tier, i) => (
+                        <div key={i} className="flex justify-between items-center">
+                          <span className="font-semibold text-[#1A1A40]">{tier}</span>
+                          <span className="text-[#1A1A40]/80">
+                            {typeof feature.values[i] === 'boolean' ? (
+                              feature.values[i] ? (
+                                <Check className="inline-block w-5 h-5 text-[#3A7D7B]" />
+                              ) : (
+                                <X className="inline-block w-5 h-5 text-red-500" />
+                              )
+                            ) : (
+                              feature.values[i]
+                            )}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+              {/* Price Row */}
+              <AccordionItem 
+                value="price"
+                className="bg-[#F5F1E6]/95 rounded-lg border-2 border-[#4A4A7E]"
+              >
+                <AccordionTrigger className="px-4 py-3 text-[#1A1A40] font-medium">
+                  Monthly Price
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="px-4 pb-4 space-y-2">
+                    {tiers.map((tier, i) => (
+                      <div key={i} className="flex justify-between items-center">
+                        <span className="font-semibold text-[#1A1A40]">{tier}</span>
+                        <span className="text-[#1A1A40]/80">{prices[i]}</span>
+                      </div>
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
         </section>
         {/* FAQ Section */}
         <section className="py-12 px-4 sm:px-6 lg:px-8 bg-[#1A1A40] border-t-2 border-b-2 border-[#3A3A6E] relative">
           <div 
-            className="absolute inset-0 opacity-40"
-            style={{ 
-              backgroundImage: 'url("/Hexagons-4.svg")',
-              backgroundSize: '50%',
-              backgroundPosition: '120% center',
-              backgroundRepeat: 'no-repeat',
-            }} 
+            className="absolute right-0 sm:right-[80px] top-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-contain bg-no-repeat bg-right opacity-10 sm:opacity-100" 
+            style={{ backgroundImage: 'url("/2.png")' }}
           />
           
           <div className="max-w-3xl mx-auto relative z-10">
@@ -807,17 +932,17 @@ export function PricingPage() {
       </main>
       {/* Footer section with privacy policy and terms of service links */}
       <footer className="bg-[#FFC700] py-4">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center space-y-4 sm:flex-row sm:justify-between sm:space-y-0">
-            <nav className="flex space-x-6">
-              <Link href="https://www.collab.land/privacy-policy" className={`text-[#1A1A40] hover:text-[#1A1A40]/80 transition-colors text-sm ${spaceMono.className} font-bold`}>
+        <div className="w-full px-6 md:px-12">
+          <div className="flex flex-col items-center space-y-4 sm:flex-row sm:justify-between sm:items-center sm:space-y-0 max-w-[1920px] mx-auto">
+            <nav className="flex space-x-6 self-start sm:self-center">
+              <Link href="https://www.collab.land/privacy-policy" className={`text-[#1A1A40] hover:text-[#1A1A40]/80 transition-colors text-base ${spaceMono.className} font-bold`}>
                 Privacy Policy
               </Link>
-              <Link href="https://www.collab.land/terms-of-service" className={`text-[#1A1A40] hover:text-[#1A1A40]/80 transition-colors text-sm ${spaceMono.className} font-bold`}>
+              <Link href="https://www.collab.land/terms-of-service" className={`text-[#1A1A40] hover:text-[#1A1A40]/80 transition-colors text-base ${spaceMono.className} font-bold`}>
                 Terms
               </Link>
             </nav>
-            <div className="flex space-x-4">
+            <div className="flex justify-center space-x-4">
               <Link href="https://linktr.ee/collab_land_" passHref>
                 <Button size="icon" variant="ghost" className="hover:bg-transparent hover:text-[#1A1A40]/80">
                   <Image src="/LinktreeIcon.svg" alt="Linktree" width={20} height={20} />
@@ -837,7 +962,14 @@ export function PricingPage() {
                 </Button>
               </Link>
             </div>
-            <p className={`text-[#1A1A40] text-sm ${spaceMono.className} font-bold`}>
+            <p className={`text-[#1A1A40] text-base ${spaceMono.className} font-bold flex items-center gap-2`}>
+              <Image 
+                src="/LogoIcon.svg" 
+                alt="Collab.Land Logo" 
+                width={20} 
+                height={20} 
+                className="inline-block"
+              />
               Collab.Land® 2024
             </p>
           </div>
