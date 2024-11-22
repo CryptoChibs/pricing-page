@@ -269,11 +269,11 @@ export function PricingPage() {
               >
                 <div className="grid gap-1 relative z-10">
                   {[
-                    { href: "/admin/command-center", label: "Command Center" },
-                    { href: "/admin/docs", label: "Docs" },
-                    { href: "/admin/invite", label: "Invite" },
-                    { href: "/admin/integrations", label: "Integrations" },
-                    { href: "/admin/premium", label: "Premium" }
+                    { href: "https://cc.collab.land", label: "Command Center" },
+                    { href: "https://docs.collab.land/help-docs/intro", label: "Docs" },
+                    { href: "https://invite.collab.land", label: "Invite" },
+                    { href: "https://bit.ly/3M5lIAo", label: "Integrations" },
+                    { href: "https://pricing.collab.land", label: "Premium" }
                   ].map((item) => (
                     <Link 
                       key={item.href}
@@ -352,13 +352,13 @@ export function PricingPage() {
               >
                 <div className="grid gap-1 relative z-10">
                   {[
-                    { href: "/resources/docs", label: "Docs" },
-                    { href: "/resources/integrations", label: "Integrations" },
-                    { href: "/resources/newsletter", label: "Newsletter" },
-                    { href: "/resources/support", label: "Support" },
-                    { href: "/resources/updates", label: "Updates" },
-                    { href: "/resources/youtube", label: "YouTube" },
-                    { href: "/resources/collab-token", label: "$COLLAB" }
+                    { href: "https://docs.collab.land", label: "Docs" },
+                    { href: "https://bit.ly/3M5lIAo", label: "Integrations" },
+                    { href: "https://collabland.substack.com/", label: "Newsletter" },
+                    { href: "https://collabland.freshdesk.com/support/tickets/new", label: "Support" },
+                    { href: "https://medium.com/collab-land", label: "Updates" },
+                    { href: "https://www.youtube.com/channel/UCmyt5i7JmBPd03r2eJ-EaMA", label: "YouTube" },
+                    { href: "https://docs.collab.land/dao/token/token_overview", label: "$COLLAB" }
                   ].map((item) => (
                     <Link 
                       key={item.href}
@@ -437,8 +437,8 @@ export function PricingPage() {
                 <div className="grid gap-1 relative z-10">
                   {[
                     { href: "https://discord.gg/collabland", label: "Discord" },
-                    { href: "https://www.instagram.com/collab.land", label: "Instagram" },
-                    { href: "https://linktr.ee/collabland", label: "Linktree" },
+                    { href: "https://www.instagram.com/collab_land_", label: "Instagram" },
+                    { href: "https://linktr.ee/collab_land_", label: "Linktree" },
                     { href: "https://twitter.com/Collab_Land_", label: "X" }
                   ].map((item) => (
                     <Link 
@@ -484,14 +484,14 @@ export function PricingPage() {
       <main>
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-12">
           <div 
-            className="absolute inset-0 opacity-40"
+            className="absolute inset-0 opacity-40 pointer-events-none"
             style={{ 
               backgroundImage: 'url("/Hexagons-4.svg")',
-              backgroundSize: '80%',
-              backgroundPosition: '-80% center',
+              backgroundSize: 'clamp(400px, 120%, 1200px)',
+              backgroundPosition: 'left center',
               backgroundRepeat: 'no-repeat',
-              left: '-35%',
-              right: '35%',
+              left: '-45%',
+              transform: 'translateX(clamp(-200px, -20vw, 0px))',
             }} 
           />
           
@@ -903,6 +903,17 @@ export function PricingPage() {
             style={{ backgroundImage: 'url("/2.png")' }}
           />
           
+          <div 
+            className="absolute right-0 top-0 w-full h-full opacity-40 pointer-events-none"
+            style={{ 
+              backgroundImage: 'url("/Hexagons-4.svg")',
+              backgroundSize: 'clamp(400px, 100%, 1000px)',
+              backgroundPosition: 'right center',
+              backgroundRepeat: 'no-repeat',
+              right: 'clamp(-150px, -15vw, 0px)',
+            }} 
+          />
+          
           <div className="max-w-3xl mx-auto relative z-10">
             <h2 className="text-2xl font-bold text-center mb-6 text-[#F5F1E6] text-shadow-glow">
               Frequently Asked Questions
@@ -942,21 +953,21 @@ export function PricingPage() {
                 Terms
               </Link>
             </nav>
-            <div className="flex justify-center space-x-4">
+            <div className="flex justify-center items-center space-x-4">
               <Link href="https://linktr.ee/collab_land_" passHref>
-                <Button size="icon" variant="ghost" className="hover:bg-transparent hover:text-[#1A1A40]/80">
+                <Button size="icon" variant="ghost" className="hover:bg-transparent hover:text-[#1A1A40]/80 flex items-center justify-center">
                   <Image src="/LinktreeIcon.svg" alt="Linktree" width={20} height={20} />
                   <span className="sr-only">Linktree</span>
                 </Button>
               </Link>
               <Link href="https://discord.gg/collabland" passHref>
-                <Button size="icon" variant="ghost" className="hover:bg-transparent hover:text-[#1A1A40]/80">
+                <Button size="icon" variant="ghost" className="hover:bg-transparent hover:text-[#1A1A40]/80 flex items-center justify-center">
                   <Image src="/DiscordIcon.svg" alt="Discord" width={20} height={20} />
                   <span className="sr-only">Discord</span>
                 </Button>
               </Link>
               <Link href="https://twitter.com/Collab_Land_" passHref>
-                <Button size="icon" variant="ghost" className="hover:bg-transparent hover:text-[#1A1A40]/80">
+                <Button size="icon" variant="ghost" className="hover:bg-transparent hover:text-[#1A1A40]/80 flex items-center justify-center">
                   <Image src="/XIcon.svg" alt="X (formerly Twitter)" width={20} height={20} />
                   <span className="sr-only">X (formerly Twitter)</span>
                 </Button>
@@ -966,8 +977,8 @@ export function PricingPage() {
               <Image 
                 src="/LogoIcon.svg" 
                 alt="Collab.Land Logo" 
-                width={20} 
-                height={20} 
+                width={24} 
+                height={24} 
                 className="inline-block"
               />
               Collab.Land® 2024
