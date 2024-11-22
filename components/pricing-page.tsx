@@ -275,7 +275,7 @@ export function PricingPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#FFC700]/5 to-transparent pointer-events-none" />
         <nav className="bg-[#F5F1E6] rounded-none px-2 sm:px-8 py-2.5 flex flex-col sm:flex-row items-center justify-between w-full relative min-h-[56px] z-50">
           <div className="flex items-center mb-4 sm:mb-0">
-            <Link href="/" className="transform transition-transform hover:scale-105">
+            <Link href="https://collab.land" className="transform transition-transform hover:scale-105">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/color_logo_wordmark-2Pg8pcGf6uxVyIG3c4fFeUeLrxDpEh.png"
                 alt="Collab.Land"
@@ -337,34 +337,18 @@ export function PricingPage() {
                       key={item.href}
                       href={item.href} 
                       className="
+                        block px-4 py-2 
                         text-[#1A1A40] 
-                        transition-all 
-                        text-base font-bold
-                        px-3 py-2.5 
-                        rounded-lg
-                        hover:bg-black/10 
-                        flex items-center justify-center 
+                        font-bold
+                        hover:bg-[#FFC700]/80 
+                        hover:translate-x-1
+                        transition-all duration-200
                         relative
                         group
-                        border border-transparent
-                        hover:border-black/10
-                        hover:shadow-[inset_0_0_10px_rgba(0,0,0,0.1)]
-                        before:absolute before:inset-0 
-                        before:bg-gradient-to-r before:from-transparent 
-                        before:via-white/5 before:to-transparent 
-                        before:opacity-0 before:group-hover:opacity-100
-                        before:transition-opacity before:duration-300
-                        text-center 
                       "
                     >
-                      <span className="relative z-10 group-hover:text-[#1A1A40]/80">{item.label}</span>
-                      <div className="
-                        absolute inset-0 
-                        bg-gradient-to-r from-black/0 via-black/5 to-black/0 
-                        opacity-0 group-hover:opacity-100 
-                        transition-opacity duration-300 
-                        rounded-lg
-                      "/>
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-0 bg-[#1A1A40] group-hover:h-1/2 transition-all duration-200" />
+                      {item.label}
                     </Link>
                   ))}
                 </div>
@@ -422,33 +406,18 @@ export function PricingPage() {
                       key={item.href}
                       href={item.href} 
                       className="
+                        block px-4 py-2 
                         text-[#1A1A40] 
-                        transition-all 
-                        text-base font-bold
-                        px-3 py-2.5 
-                        rounded-lg
-                        hover:bg-black/10 
-                        flex items-center justify-center
+                        font-bold
+                        hover:bg-[#FFC700]/80 
+                        hover:translate-x-1
+                        transition-all duration-200
                         relative
                         group
-                        border border-transparent
-                        hover:border-black/10
-                        hover:shadow-[inset_0_0_10px_rgba(0,0,0,0.1)]
-                        before:absolute before:inset-0 
-                        before:bg-gradient-to-r before:from-transparent 
-                        before:via-white/5 before:to-transparent 
-                        before:opacity-0 before:group-hover:opacity-100
-                        before:transition-opacity before:duration-300
                       "
                     >
-                      <span className="relative z-10 group-hover:text-[#1A1A40]/80">{item.label}</span>
-                      <div className="
-                        absolute inset-0 
-                        bg-gradient-to-r from-black/0 via-black/5 to-black/0 
-                        opacity-0 group-hover:opacity-100 
-                        transition-opacity duration-300 
-                        rounded-lg
-                      "/>
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-0 bg-[#1A1A40] group-hover:h-1/2 transition-all duration-200" />
+                      {item.label}
                     </Link>
                   ))}
                 </div>
@@ -503,33 +472,18 @@ export function PricingPage() {
                       key={item.href}
                       href={item.href} 
                       className="
+                        block px-4 py-2 
                         text-[#1A1A40] 
-                        transition-all 
-                        text-base font-bold
-                        px-3 py-2.5 
-                        rounded-lg
-                        hover:bg-black/10 
-                        flex items-center justify-center
+                        font-bold
+                        hover:bg-[#FFC700]/80 
+                        hover:translate-x-1
+                        transition-all duration-200
                         relative
                         group
-                        border border-transparent
-                        hover:border-black/10
-                        hover:shadow-[inset_0_0_10px_rgba(0,0,0,0.1)]
-                        before:absolute before:inset-0 
-                        before:bg-gradient-to-r before:from-transparent 
-                        before:via-white/5 before:to-transparent 
-                        before:opacity-0 before:group-hover:opacity-100
-                        before:transition-opacity before:duration-300
                       "
                     >
-                      <span className="relative z-10 group-hover:text-[#1A1A40]/80">{item.label}</span>
-                      <div className="
-                        absolute inset-0 
-                        bg-gradient-to-r from-black/0 via-black/5 to-black/0 
-                        opacity-0 group-hover:opacity-100 
-                        transition-opacity duration-300 
-                        rounded-lg
-                      "/>
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-0 bg-[#1A1A40] group-hover:h-1/2 transition-all duration-200" />
+                      {item.label}
                     </Link>
                   ))}
                 </div>
