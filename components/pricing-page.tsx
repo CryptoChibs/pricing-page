@@ -278,11 +278,11 @@ export function PricingPage() {
             <Link href="https://collab.land" className="transform transition-transform hover:scale-105">
               {/* Desktop logo */}
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/color_logo_wordmark-2Pg8pcGf6uxVyIG3c4fFeUeLrxDpEh.png"
+                src="/Logo-Color.png"
                 alt="Collab.Land"
                 width={200}
                 height={40}
-                className="h-7 w-auto hover:brightness-110 transition-all hidden md:block"
+                className="h-8 w-auto hover:brightness-110 transition-all hidden md:block"
                 priority
               />
               {/* Mobile logo */}
@@ -291,13 +291,80 @@ export function PricingPage() {
                 alt="Collab.Land"
                 width={32}
                 height={32}
-                className="h-8 w-auto hover:brightness-110 transition-all md:hidden"
+                className="h-9 w-auto hover:brightness-110 transition-all md:hidden"
                 priority
               />
             </Link>
           </div>
           
           <div className="flex items-center gap-2">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  className={`
+                    text-[13px] h-8 px-3 py-1 
+                    text-[#1A1A40] hover:text-[#FFB800] 
+                    transition-all duration-300 
+                    ${spaceMono.className} 
+                    font-bold
+                    relative
+                    group
+                    hover:bg-[#FFC700]/10
+                    data-[state=open]:bg-[#FFC700]/10
+                  `}
+                >
+                  <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#FFB800] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                  About <ChevronDown className="ml-2 h-4 w-4 transition-transform duration-300" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent 
+                className={`
+                  w-48 bg-[#FFC700] 
+                  border-none rounded-lg shadow-lg 
+                  ${spaceMono.className}
+                  backdrop-blur-sm
+                  relative
+                  z-[200]
+                  before:absolute before:inset-0 
+                  before:border-2 before:border-black/10 
+                  before:rounded-lg
+                  after:absolute after:inset-0 
+                  after:bg-gradient-to-b after:from-white/10 after:to-transparent 
+                  after:rounded-lg after:pointer-events-none
+                `}
+                sideOffset={4}
+                align="center"
+                side="bottom"
+              >
+                <div className="grid gap-1 relative z-10">
+                  {[
+                    { href: "https://collab.land/overview", label: "Overview" },
+                    { href: "https://collab.land/team", label: "Team" },
+                    { href: "https://docs.collab.land/dao/token/token_overview", label: "$COLLAB" }
+                  ].map((item) => (
+                    <Link 
+                      key={item.href}
+                      href={item.href} 
+                      className="
+                        block px-4 py-2 
+                        text-[#1A1A40] 
+                        text-[13px]
+                        font-bold
+                        hover:bg-[#FFC700]/80 
+                        hover:translate-x-1
+                        transition-all duration-200
+                        relative
+                        group
+                      "
+                    >
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-0 bg-[#1A1A40] group-hover:h-1/2 transition-all duration-200" />
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </PopoverContent>
+            </Popover>
             <Popover>
               <PopoverTrigger asChild>
                 <Button 
@@ -413,8 +480,7 @@ export function PricingPage() {
                     { href: "https://collabland.substack.com/", label: "Newsletter" },
                     { href: "https://collabland.freshdesk.com/support/tickets/new", label: "Support" },
                     { href: "https://medium.com/collab-land", label: "Updates" },
-                    { href: "https://www.youtube.com/channel/UCmyt5i7JmBPd03r2eJ-EaMA", label: "YouTube" },
-                    { href: "https://docs.collab.land/dao/token/token_overview", label: "$COLLAB" }
+                    { href: "https://www.youtube.com/channel/UCmyt5i7JmBPd03r2eJ-EaMA", label: "YouTube" }
                   ].map((item) => (
                     <Link 
                       key={item.href}
@@ -513,10 +579,10 @@ export function PricingPage() {
       <main className="pt-[40px]">
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-8">
           <div className="max-w-3xl mx-auto relative z-10">
-            <h1 className="text-xl font-bold text-[#F5F1E6] text-center">
+            <h1 className="text-2xl font-bold text-[#F5F1E6] text-center">
               Subscription Plans
             </h1>
-            <p className={`text-sm text-center text-[#B8B9BE] mb-4 ${spaceMono.className}`}>
+            <p className={`text-sm text-center text-[#B8B9BE] mb-8 ${spaceMono.className}`}>
               No hidden fees. No surprises. Start for free and upgrade as you grow.
             </p>
             <Tabs defaultValue="discord" className="mb-8">
