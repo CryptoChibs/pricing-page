@@ -269,42 +269,53 @@ export function PricingPage() {
   }, [carousel])
 
   return (
-    <div className={`min-h-screen bg-[#1A1A40] text-[#E1E2E6] ${ibmPlexSans.className}`}>
-      <header className="relative sticky top-0 z-50 shadow-lg after:absolute after:inset-0 after:shadow-[0_4px_12px_rgba(0,0,0,0.2)] after:pointer-events-none">
+    <div className={`min-h-screen bg-[#1A1A40] text-[#E1E2E6] ${ibmPlexSans.className} overflow-x-hidden relative`}>
+      <header className="fixed w-full top-0 z-[100] shadow-lg after:absolute after:inset-0 after:shadow-[0_4px_12px_rgba(0,0,0,0.2)] after:pointer-events-none">
         <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#FFC700] to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#FFC700]/5 to-transparent pointer-events-none" />
-        <nav className="bg-[#F5F1E6] rounded-none px-2 sm:px-8 py-2.5 flex flex-col sm:flex-row items-center justify-between w-full relative min-h-[56px] z-50">
-          <div className="flex items-center mb-4 sm:mb-0">
+        <nav className="bg-[#F5F1E6] px-2 py-2 flex flex-row items-center justify-between w-full relative min-h-[40px] z-50">
+          <div className="flex items-center">
             <Link href="https://collab.land" className="transform transition-transform hover:scale-105">
+              {/* Desktop logo */}
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/color_logo_wordmark-2Pg8pcGf6uxVyIG3c4fFeUeLrxDpEh.png"
                 alt="Collab.Land"
-                width={600}
-                height={120}
-                className="h-11 w-auto hover:brightness-110 transition-all"
+                width={200}
+                height={40}
+                className="h-7 w-auto hover:brightness-110 transition-all hidden md:block"
+                priority
+              />
+              {/* Mobile logo */}
+              <Image
+                src="/LogoIconColor.svg"
+                alt="Collab.Land"
+                width={32}
+                height={32}
+                className="h-8 w-auto hover:brightness-110 transition-all md:hidden"
                 priority
               />
             </Link>
           </div>
-          <div className="flex items-center gap-2 sm:gap-6 flex-wrap justify-center">
+          
+          <div className="flex items-center gap-2">
             <Popover>
               <PopoverTrigger asChild>
                 <Button 
                   variant="ghost" 
                   className={`
+                    text-[13px] h-8 px-3 py-1 
                     text-[#1A1A40] hover:text-[#FFB800] 
                     transition-all duration-300 
                     ${spaceMono.className} 
-                    text-base font-bold
+                    font-bold
                     relative
                     group
-                    px-4
                     hover:bg-[#FFC700]/10
                     data-[state=open]:bg-[#FFC700]/10
                   `}
                 >
                   <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#FFB800] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-                  Admins <ChevronDown className="ml-2 h-4 w-4 transition-transform duration-300" data-state="closed" />
+                  Admins <ChevronDown className="ml-2 h-4 w-4 transition-transform duration-300" />
                 </Button>
               </PopoverTrigger>
               <PopoverContent 
@@ -314,6 +325,7 @@ export function PricingPage() {
                   ${spaceMono.className}
                   backdrop-blur-sm
                   relative
+                  z-[200]
                   before:absolute before:inset-0 
                   before:border-2 before:border-black/10 
                   before:rounded-lg
@@ -321,14 +333,14 @@ export function PricingPage() {
                   after:bg-gradient-to-b after:from-white/10 after:to-transparent 
                   after:rounded-lg after:pointer-events-none
                 `}
-                sideOffset={8}
+                sideOffset={4}
                 align="center"
                 side="bottom"
               >
                 <div className="grid gap-1 relative z-10">
                   {[
                     { href: "https://cc.collab.land", label: "Command Center" },
-                    { href: "https://docs.collab.land/help-docs/intro", label: "Docs" },
+                    { href: "https://docs.collab.land", label: "Docs" },
                     { href: "https://invite.collab.land", label: "Invite" },
                     { href: "https://bit.ly/3M5lIAo", label: "Integrations" },
                     { href: "https://pricing.collab.land", label: "Premium" }
@@ -339,6 +351,7 @@ export function PricingPage() {
                       className="
                         block px-4 py-2 
                         text-[#1A1A40] 
+                        text-[13px]
                         font-bold
                         hover:bg-[#FFC700]/80 
                         hover:translate-x-1
@@ -359,19 +372,19 @@ export function PricingPage() {
                 <Button 
                   variant="ghost" 
                   className={`
+                    text-[13px] h-8 px-3 py-1 
                     text-[#1A1A40] hover:text-[#FFB800] 
                     transition-all duration-300 
                     ${spaceMono.className} 
-                    text-base font-bold
+                    font-bold
                     relative
                     group
-                    px-4
                     hover:bg-[#FFC700]/10
                     data-[state=open]:bg-[#FFC700]/10
                   `}
                 >
                   <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#FFB800] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-                  Resources <ChevronDown className="ml-2 h-4 w-4 transition-transform duration-300" data-state="closed" />
+                  Resources <ChevronDown className="ml-2 h-4 w-4 transition-transform duration-300" />
                 </Button>
               </PopoverTrigger>
               <PopoverContent 
@@ -381,6 +394,7 @@ export function PricingPage() {
                   ${spaceMono.className}
                   backdrop-blur-sm
                   relative
+                  z-[200]
                   before:absolute before:inset-0 
                   before:border-2 before:border-black/10 
                   before:rounded-lg
@@ -388,7 +402,7 @@ export function PricingPage() {
                   after:bg-gradient-to-b after:from-white/10 after:to-transparent 
                   after:rounded-lg after:pointer-events-none
                 `}
-                sideOffset={8}
+                sideOffset={4}
                 align="center"
                 side="bottom"
               >
@@ -408,6 +422,7 @@ export function PricingPage() {
                       className="
                         block px-4 py-2 
                         text-[#1A1A40] 
+                        text-[13px]
                         font-bold
                         hover:bg-[#FFC700]/80 
                         hover:translate-x-1
@@ -428,19 +443,19 @@ export function PricingPage() {
                 <Button 
                   variant="ghost" 
                   className={`
+                    text-[13px] h-8 px-3 py-1 
                     text-[#1A1A40] hover:text-[#FFB800] 
                     transition-all duration-300 
                     ${spaceMono.className} 
-                    text-base font-bold
+                    font-bold
                     relative
                     group
-                    px-4
                     hover:bg-[#FFC700]/10
                     data-[state=open]:bg-[#FFC700]/10
                   `}
                 >
                   <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#FFB800] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-                  Socials <ChevronDown className="ml-2 h-4 w-4 transition-transform duration-300" data-state="closed" />
+                  Socials <ChevronDown className="ml-2 h-4 w-4 transition-transform duration-300" />
                 </Button>
               </PopoverTrigger>
               <PopoverContent 
@@ -450,6 +465,7 @@ export function PricingPage() {
                   ${spaceMono.className}
                   backdrop-blur-sm
                   relative
+                  z-[200]
                   before:absolute before:inset-0 
                   before:border-2 before:border-black/10 
                   before:rounded-lg
@@ -457,7 +473,7 @@ export function PricingPage() {
                   after:bg-gradient-to-b after:from-white/10 after:to-transparent 
                   after:rounded-lg after:pointer-events-none
                 `}
-                sideOffset={8}
+                sideOffset={4}
                 align="center"
                 side="bottom"
               >
@@ -474,6 +490,7 @@ export function PricingPage() {
                       className="
                         block px-4 py-2 
                         text-[#1A1A40] 
+                        text-[13px]
                         font-bold
                         hover:bg-[#FFC700]/80 
                         hover:translate-x-1
@@ -493,28 +510,18 @@ export function PricingPage() {
         </nav>
       </header>
 
-      <main>
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-12">
-          <div 
-            className="absolute inset-0 opacity-40 pointer-events-none"
-            style={{ 
-              backgroundImage: 'url("/Hexagons-4.svg")',
-              backgroundSize: 'clamp(400px, 120%, 1200px)',
-              backgroundPosition: 'left center',
-              backgroundRepeat: 'no-repeat',
-              left: '-45%',
-              transform: 'translateX(clamp(-200px, -20vw, 0px))',
-            }} 
-          />
-          
-          <div className="max-w-7xl mx-auto relative z-10">
-            <h1 className="text-3xl font-bold text-[#F5F1E6] text-center text-shadow-sm">Subscription Plans</h1>
-            <p className={`text-lg text-center text-[#B8B9BE] mb-8 ${spaceMono.className}`}>
+      <main className="pt-[40px]">
+        <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-8">
+          <div className="max-w-3xl mx-auto relative z-10">
+            <h1 className="text-xl font-bold text-[#F5F1E6] text-center">
+              Subscription Plans
+            </h1>
+            <p className={`text-sm text-center text-[#B8B9BE] mb-4 ${spaceMono.className}`}>
               No hidden fees. No surprises. Start for free and upgrade as you grow.
             </p>
-            <Tabs defaultValue="discord" className="mb-12">
+            <Tabs defaultValue="discord" className="mb-8">
               <div className="max-w-5xl mx-auto md:px-0 px-12">
-                <TabsList className="grid w-full grid-cols-2 bg-[#F5F1E6] mb-6 p-1.5 h-12 rounded-lg relative overflow-hidden">
+                <TabsList className="grid w-full max-w-[445px] mx-auto grid-cols-2 bg-[#F5F1E6] mb-6 p-1 h-8 rounded-lg relative overflow-hidden">
                   <TabsTrigger 
                     value="discord" 
                     className={`
@@ -522,7 +529,7 @@ export function PricingPage() {
                       font-semibold 
                       transition-all 
                       duration-300
-                      text-lg 
+                      text-xs
                       h-full
                       relative
                       rounded-md
@@ -533,6 +540,7 @@ export function PricingPage() {
                       hover:bg-[#FFC700]/20
                       data-[state=active]:hover:bg-[#FFC700]
                       z-10
+                      px-20
                     `}
                   >
                     Discord
@@ -544,7 +552,7 @@ export function PricingPage() {
                       font-semibold 
                       transition-all 
                       duration-300
-                      text-lg 
+                      text-xs
                       h-full
                       relative
                       rounded-md
@@ -555,6 +563,7 @@ export function PricingPage() {
                       hover:bg-[#FFC700]/20
                       data-[state=active]:hover:bg-[#FFC700]
                       z-10
+                      px-20
                     `}
                   >
                     Telegram
@@ -572,36 +581,36 @@ export function PricingPage() {
                         slidesToScroll: 1
                       }}
                     >
-                      <CarouselContent className="-ml-2 sm:-ml-4">
+                      <CarouselContent className="-ml-1 sm:-ml-2">
                         {discordPlans.map((plan, index) => (
                           <CarouselItem 
                             key={plan.name} 
-                            className="pl-2 sm:pl-4 basis-full sm:basis-full md:basis-1/2 xl:basis-1/3"
+                            className="pl-1 sm:pl-2 basis-full sm:basis-1/2 md:basis-1/3"
                           >
-                            <div className="p-1">
-                              <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[650px] shadow-neon">
-                                <CardHeader className="flex-none pt-6 px-6">
-                                  <CardTitle className="text-2xl font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
-                                  <CardDescription className="text-[#1A1A40]/80 text-center min-h-[48px]">{plan.description}</CardDescription>
+                            <div className="p-0.5">
+                              <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[400px] max-w-[220px] mx-auto">
+                                <CardHeader className="flex-none pt-2 px-2">
+                                  <CardTitle className="text-base font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
+                                  <CardDescription className="text-[#1A1A40]/80 text-center min-h-[28px] text-[10px]">{plan.description}</CardDescription>
                                 </CardHeader>
-                                <CardContent className="flex-grow px-6">
-                                  <div className="flex items-baseline justify-center mb-6">
-                                    <span className="text-4xl font-extrabold text-[#1A1A40]">{plan.price}</span>
-                                    {plan.period && <span className="text-[#1A1A40]/80 ml-1">{plan.period}</span>}
+                                <CardContent className="flex-grow px-2">
+                                  <div className="flex items-baseline justify-center mb-2">
+                                    <span className="text-lg font-extrabold text-[#1A1A40]">{plan.price}</span>
+                                    {plan.period && <span className="text-[#1A1A40]/80 ml-1 text-[10px]">{plan.period}</span>}
                                   </div>
-                                  <ul className="space-y-2 mb-6 text-[#1A1A40]">
+                                  <ul className="space-y-0.5 mb-2 text-[#1A1A40]">
                                     {plan.features.map((feature, index) => (
                                       <li key={index} className="flex items-start">
-                                        <Check className="h-5 w-5 text-[#3A7D7B] mr-2 mt-0.5 flex-shrink-0" />
-                                        <span className="text-sm sm:text-base">{feature}</span>
+                                        <Check className="h-3 w-3 text-[#3A7D7B] mr-1 mt-0.5 flex-shrink-0" />
+                                        <span className="text-[10px] leading-tight">{feature}</span>
                                       </li>
                                     ))}
                                   </ul>
                                 </CardContent>
-                                <CardFooter className="flex-none pb-6 px-6">
+                                <CardFooter className="flex-none pb-2 px-2">
                                   <Button 
                                     asChild 
-                                    className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] shadow-neon-button transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
+                                    className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group h-7 text-[10px]"
                                   >
                                     {plan.cta === "Contact Us" ? (
                                       <a href="mailto:anjali@collab.land">
@@ -670,7 +679,7 @@ export function PricingPage() {
               </TabsContent>
               <TabsContent value="telegram">
                 <div className="relative px-4 sm:px-12">
-                  {/* Show carousel only on mobile */}
+                  {/* Mobile carousel */}
                   <div className="md:hidden">
                     <Carousel 
                       className="w-full max-w-5xl mx-auto" 
@@ -680,36 +689,36 @@ export function PricingPage() {
                         slidesToScroll: 1
                       }}
                     >
-                      <CarouselContent className="-ml-2">
+                      <CarouselContent className="-ml-1 sm:-ml-2">
                         {telegramPlans.map((plan, index) => (
                           <CarouselItem 
                             key={plan.name} 
-                            className="pl-2 basis-full sm:basis-full"
+                            className="pl-1 sm:pl-2 basis-full sm:basis-1/2 md:basis-1/3"
                           >
-                            <div className="p-1">
-                              <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[650px] shadow-neon">
-                                <CardHeader className="flex-none pt-6 px-6">
-                                  <CardTitle className="text-2xl font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
-                                  <CardDescription className="text-[#1A1A40]/80 text-center min-h-[48px]">{plan.description}</CardDescription>
+                            <div className="p-0.5">
+                              <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[400px] max-w-[220px] mx-auto">
+                                <CardHeader className="flex-none pt-2 px-2">
+                                  <CardTitle className="text-base font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
+                                  <CardDescription className="text-[#1A1A40]/80 text-center min-h-[28px] text-[10px]">{plan.description}</CardDescription>
                                 </CardHeader>
-                                <CardContent className="flex-grow px-6">
-                                  <div className="flex items-baseline justify-center mb-6">
-                                    <span className="text-4xl font-extrabold text-[#1A1A40]">{plan.price}</span>
-                                    {plan.period && <span className="text-[#1A1A40]/80 ml-1">{plan.period}</span>}
+                                <CardContent className="flex-grow px-2">
+                                  <div className="flex items-baseline justify-center mb-2">
+                                    <span className="text-lg font-extrabold text-[#1A1A40]">{plan.price}</span>
+                                    {plan.period && <span className="text-[#1A1A40]/80 ml-1 text-[10px]">{plan.period}</span>}
                                   </div>
-                                  <ul className="space-y-2 mb-6 text-[#1A1A40]">
+                                  <ul className="space-y-0.5 mb-2 text-[#1A1A40]">
                                     {plan.features.map((feature, index) => (
                                       <li key={index} className="flex items-start">
-                                        <Check className="h-5 w-5 text-[#3A7D7B] mr-2 mt-0.5 flex-shrink-0" />
-                                        <span className="text-sm sm:text-base">{feature}</span>
+                                        <Check className="h-3 w-3 text-[#3A7D7B] mr-1 mt-0.5 flex-shrink-0" />
+                                        <span className="text-[10px] leading-tight">{feature}</span>
                                       </li>
                                     ))}
                                   </ul>
                                 </CardContent>
-                                <CardFooter className="flex-none pb-6 px-6">
+                                <CardFooter className="flex-none pb-2 px-2">
                                   <Button 
                                     asChild 
-                                    className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] shadow-neon-button transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
+                                    className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group h-7 text-[10px]"
                                   >
                                     {plan.cta === "Contact Us" ? (
                                       <a href="mailto:anjali@collab.land">
@@ -729,51 +738,37 @@ export function PricingPage() {
                           </CarouselItem>
                         ))}
                       </CarouselContent>
-                      {/* Mobile controls for Telegram */}
-                      <div className="flex justify-center gap-4 mt-6">
-                        <button
-                          onClick={() => carousel?.scrollPrev()}
-                          className="bg-[#242457] border border-[#4A4A7E] hover:bg-[#3A3A6E] rounded-full p-3 transition-colors"
-                        >
-                          <ChevronLeft className="w-6 h-6 text-[#F5F1E6]" />
-                        </button>
-                        <button
-                          onClick={() => carousel?.scrollNext()}
-                          className="bg-[#242457] border border-[#4A4A7E] hover:bg-[#3A3A6E] rounded-full p-3 transition-colors"
-                        >
-                          <ChevronRight className="w-6 h-6 text-[#F5F1E6]" />
-                        </button>
-                      </div>
+                      {/* Carousel controls */}
                     </Carousel>
                   </div>
 
-                  {/* Desktop grid layout remains unchanged */}
-                  <div className="hidden md:grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                  {/* Desktop grid - adjusted spacing */}
+                  <div className="hidden md:flex justify-center gap-2 max-w-3xl mx-auto">
                     {telegramPlans.map((plan, index) => (
-                      <div key={plan.name} className="p-1 max-w-[400px] w-full mx-auto">
-                        <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[650px] shadow-neon">
-                          <CardHeader className="flex-none pt-6 px-6">
-                            <CardTitle className="text-2xl font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
-                            <CardDescription className="text-[#1A1A40]/80 text-center min-h-[48px]">{plan.description}</CardDescription>
+                      <div key={plan.name} className="p-0.5 w-[220px]">
+                        <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[400px]">
+                          <CardHeader className="flex-none pt-2 px-2">
+                            <CardTitle className="text-base font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
+                            <CardDescription className="text-[#1A1A40]/80 text-center min-h-[28px] text-[10px]">{plan.description}</CardDescription>
                           </CardHeader>
-                          <CardContent className="flex-grow px-6">
-                            <div className="flex items-baseline justify-center mb-6">
-                              <span className="text-4xl font-extrabold text-[#1A1A40]">{plan.price}</span>
-                              {plan.period && <span className="text-[#1A1A40]/80 ml-1">{plan.period}</span>}
+                          <CardContent className="flex-grow px-2">
+                            <div className="flex items-baseline justify-center mb-2">
+                              <span className="text-lg font-extrabold text-[#1A1A40]">{plan.price}</span>
+                              {plan.period && <span className="text-[#1A1A40]/80 ml-1 text-[10px]">{plan.period}</span>}
                             </div>
-                            <ul className="space-y-2 mb-6 text-[#1A1A40]">
+                            <ul className="space-y-0.5 mb-2 text-[#1A1A40]">
                               {plan.features.map((feature, index) => (
                                 <li key={index} className="flex items-start">
-                                  <Check className="h-5 w-5 text-[#3A7D7B] mr-2 mt-0.5 flex-shrink-0" />
-                                  <span className="text-sm sm:text-base">{feature}</span>
+                                  <Check className="h-3 w-3 text-[#3A7D7B] mr-1 mt-0.5 flex-shrink-0" />
+                                  <span className="text-[10px] leading-tight">{feature}</span>
                                 </li>
                               ))}
                             </ul>
                           </CardContent>
-                          <CardFooter className="flex-none pb-6 px-6">
+                          <CardFooter className="flex-none pb-2 px-2">
                             <Button 
                               asChild 
-                              className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] shadow-neon-button transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
+                              className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group h-7 text-[10px]"
                             >
                               {plan.cta === "Contact Us" ? (
                                 <a href="mailto:anjali@collab.land">
@@ -798,13 +793,13 @@ export function PricingPage() {
           </div>
         </section>
         {/* ----- Supported Chains and Wallets Style----- */}
-        <section className="bg-[#1A1A40] py-12 px-4 sm:px-6 lg:px-8 border-t-2 border-b-2 border-[#3A3A6E]">
+        <section className="bg-[#1A1A40] pt-4 pb-8 px-4 sm:px-6 lg:px-8 border-t-2 border-b-2 border-[#3A3A6E]">
           <div className="max-w-5xl mx-auto flex flex-col items-center">
-            <div className="mb-8 pb-8 border-b-2 border-[#3A3A6E] w-full max-w-4xl">
-              <h2 className="text-2xl font-bold text-center mb-6 text-[#F5F1E6] text-shadow-glow">Supported Chains and Networks</h2>
+            <div className="mb-6 pb-6 border-b-2 border-[#3A3A6E] w-full max-w-4xl">
+              <h2 className="text-xl font-bold text-center mb-6 text-[#F5F1E6]">Supported Chains and Networks</h2>
               <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 px-8 sm:px-12">
                 {supportedChains.map((chain, index) => (
-                  <div key={index} className="text-[#B8B9BE] flex items-center pl-4 mb-4">
+                  <div key={index} className="text-[#B8B9BE] flex items-center pl-4 mb-4 text-xs">
                     <div className="w-2 h-2 rotate-45 bg-[#FFC700] mr-2 flex-shrink-0 transform -translate-y-[1px]" />
                     <a 
                       href={chain.url} 
@@ -819,10 +814,10 @@ export function PricingPage() {
               </div>
             </div>
             <div className="w-full max-w-4xl">
-              <h2 className="text-2xl font-bold text-center mb-6 text-[#F5F1E6] text-shadow-glow">Supported Wallets and Verifications</h2>
+              <h2 className="text-xl font-bold text-center mb-6 text-[#F5F1E6]">Supported Wallets and Verifications</h2>
               <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 px-8 sm:px-12">
                 {supportedWallets.map((wallet, index) => (
-                  <div key={index} className="text-[#B8B9BE] flex items-center pl-4 mb-4">
+                  <div key={index} className="text-[#B8B9BE] flex items-center pl-4 mb-4 text-xs">
                     <div className="w-2 h-2 rotate-45 bg-[#FFC700] mr-2 flex-shrink-0 transform -translate-y-[1px]" />
                     <a 
                       href={wallet.url} 
@@ -839,35 +834,47 @@ export function PricingPage() {
           </div>
         </section>
         {/* Add the comparison table right after the supported chains and wallets section, but before the FAQs */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <h2 className="text-2xl font-bold text-center mb-8 text-[#F5F1E6]">Plans Comparison</h2>
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8">
+          <h2 className="text-xl font-bold text-center mb-4 text-[#F5F1E6]">Plans Comparison</h2>
           
           {/* Desktop Table */}
           <div className="hidden md:block overflow-x-auto">
-            <div className="md:max-w-[720px] lg:max-w-none mx-auto">
-              <table className="w-full md:min-w-0 lg:min-w-[800px] rounded-lg overflow-hidden">
+            <div className="md:max-w-[720px] mx-auto">
+              <table className="w-full rounded-lg overflow-hidden text-sm">
                 <thead>
                   <tr className="bg-[#FFC700]/95">
-                    <th className={`p-2 md:p-3 text-left font-semibold text-[#1A1A40] ${spaceMono.className} first:rounded-tl-lg md:w-[35%] lg:w-auto text-sm md:text-base`}>FEATURES</th>
+                    <th className={`
+                      p-2 text-left font-semibold text-[#1A1A40] 
+                      ${spaceMono.className} 
+                      first:rounded-tl-lg 
+                      text-xs
+                      w-[30%]
+                    `}>
+                      FEATURES
+                    </th>
                     {tiers.map((tier, index) => (
-                      <th key={tier} className={`p-2 md:p-3 text-center font-semibold text-[#1A1A40] ${spaceMono.className} md:w-[13%] lg:w-auto text-sm md:text-base ${
-                        index === tiers.length - 1 ? 'rounded-tr-lg' : ''
-                      }`}>{tier}</th>
+                      <th key={tier} className={`
+                        p-2 text-center font-semibold text-[#1A1A40] 
+                        ${spaceMono.className} 
+                        text-xs
+                        ${index === tiers.length - 1 ? 'rounded-tr-lg' : ''}
+                      `}>
+                        {tier}
+                      </th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
-                  {/* Update cell padding in tbody too */}
                   {features.map((feature, index) => (
                     <tr key={feature.name} className={index % 2 === 0 ? 'bg-[#F5F1E6]/95' : 'bg-[#F5F1E6]/90'}>
-                      <td className="p-2 md:p-3 font-medium text-[#1A1A40] text-sm md:text-base">{feature.name}</td>
+                      <td className="p-2 font-medium text-[#1A1A40] text-xs">{feature.name}</td>
                       {feature.values.map((value, i) => (
-                        <td key={i} className="p-2 md:p-3 text-center text-[#1A1A40]/80 text-sm md:text-base">
+                        <td key={i} className="p-2 text-center text-[#1A1A40]/80 text-xs">
                           {typeof value === 'boolean' ? (
                             value ? (
-                              <Check className="inline-block w-5 h-5 text-[#3A7D7B]" />
+                              <Check className="inline-block w-4 h-4 text-[#3A7D7B]" />
                             ) : (
-                              <X className="inline-block w-5 h-5 text-red-500" />
+                              <X className="inline-block w-4 h-4 text-red-500" />
                             )
                           ) : (
                             value
@@ -883,27 +890,27 @@ export function PricingPage() {
 
           {/* Mobile Accordion */}
           <div className="md:hidden">
-            <Accordion type="single" collapsible className="space-y-4">
+            <Accordion type="single" collapsible className="space-y-2">
               {features.map((feature, index) => (
                 <AccordionItem 
                   key={index} 
                   value={`feature-${index}`}
-                  className="bg-[#F5F1E6]/95 rounded-lg border-2 border-[#4A4A7E]"
+                  className="bg-[#F5F1E6]/95 rounded-lg border border-[#4A4A7E]"
                 >
-                  <AccordionTrigger className="px-4 py-3 text-[#1A1A40] font-medium">
+                  <AccordionTrigger className="px-3 py-2 text-[#1A1A40] font-medium text-xs">
                     {feature.name}
                   </AccordionTrigger>
                   <AccordionContent>
-                    <div className="px-4 pb-4 space-y-2">
+                    <div className="px-3 pb-2 space-y-1">
                       {tiers.map((tier, i) => (
-                        <div key={i} className="flex justify-between items-center">
+                        <div key={i} className="flex justify-between items-center text-xs">
                           <span className="font-semibold text-[#1A1A40]">{tier}</span>
                           <span className="text-[#1A1A40]/80">
                             {typeof feature.values[i] === 'boolean' ? (
                               feature.values[i] ? (
-                                <Check className="inline-block w-5 h-5 text-[#3A7D7B]" />
+                                <Check className="inline-block w-4 h-4 text-[#3A7D7B]" />
                               ) : (
-                                <X className="inline-block w-5 h-5 text-red-500" />
+                                <X className="inline-block w-4 h-4 text-red-500" />
                               )
                             ) : (
                               feature.values[i]
@@ -915,64 +922,29 @@ export function PricingPage() {
                   </AccordionContent>
                 </AccordionItem>
               ))}
-              {/* Price Row */}
-              <AccordionItem 
-                value="price"
-                className="bg-[#F5F1E6]/95 rounded-lg border-2 border-[#4A4A7E]"
-              >
-                <AccordionTrigger className="px-4 py-3 text-[#1A1A40] font-medium">
-                  Monthly Price
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="px-4 pb-4 space-y-2">
-                    {tiers.map((tier, i) => (
-                      <div key={i} className="flex justify-between items-center">
-                        <span className="font-semibold text-[#1A1A40]">{tier}</span>
-                        <span className="text-[#1A1A40]/80">{prices[i]}</span>
-                      </div>
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
             </Accordion>
           </div>
         </section>
         {/* FAQ Section */}
-        <section className="py-12 px-4 sm:px-6 lg:px-8 bg-[#1A1A40] border-t-2 border-b-2 border-[#3A3A6E] relative">
-          <div 
-            className="absolute right-0 sm:right-[80px] top-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-contain bg-no-repeat bg-right opacity-10 sm:opacity-100" 
-            style={{ backgroundImage: 'url("/2.png")' }}
-          />
-          
-          <div 
-            className="absolute right-0 top-0 w-full h-full opacity-40 pointer-events-none"
-            style={{ 
-              backgroundImage: 'url("/Hexagons-4.svg")',
-              backgroundSize: 'clamp(400px, 100%, 1000px)',
-              backgroundPosition: 'right center',
-              backgroundRepeat: 'no-repeat',
-              right: 'clamp(-150px, -15vw, 0px)',
-            }} 
-          />
-          
-          <div className="max-w-3xl mx-auto relative z-10">
-            <h2 className="text-2xl font-bold text-center mb-6 text-[#F5F1E6] text-shadow-glow">
+        <section className="pt-4 pb-8 px-4 sm:px-6 lg:px-8 bg-[#1A1A40] border-t-2 border-b-2 border-[#3A3A6E] relative">
+          <div className="max-w-2xl mx-auto relative z-10">
+            <h2 className="text-xl font-bold text-center mb-4 text-[#F5F1E6]">
               Frequently Asked Questions
             </h2>
-            <Accordion type="single" collapsible className="space-y-4">
+            <Accordion type="single" collapsible className="space-y-3">
               {faqs.map((faq, index) => (
                 <AccordionItem 
                   key={index} 
                   value={`item-${index}`} 
-                  className="bg-[#F5F1E6]/95 rounded-lg overflow-hidden border-2 border-[#4A4A7E] shadow-neon"
+                  className="bg-[#F5F1E6]/95 rounded-lg overflow-hidden border-2 border-[#4A4A7E]"
                 >
                   <AccordionTrigger 
-                    className="px-6 py-4 text-left hover:bg-[#FFC700]/95 text-[#1A1A40] font-semibold"
+                    className="px-4 py-2.5 text-left hover:bg-[#FFC700]/95 text-[#1A1A40] font-semibold text-xs"
                   >
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent 
-                    className="px-6 pt-4 pb-6 text-[#1A1A40]/80"
+                    className="px-4 pt-2 pb-3 text-[#1A1A40]/80 text-xs"
                   >
                     {faq.answer}
                   </AccordionContent>
@@ -983,43 +955,66 @@ export function PricingPage() {
         </section>
       </main>
       {/* Footer section with privacy policy and terms of service links */}
-      <footer className="bg-[#FFC700] py-4">
-        <div className="w-full px-6 md:px-12">
-          <div className="flex flex-col items-center space-y-4 sm:flex-row sm:justify-between sm:items-center sm:space-y-0 max-w-[1920px] mx-auto">
-            <nav className="flex space-x-6 self-start sm:self-center">
-              <Link href="https://www.collab.land/privacy-policy" className={`text-[#1A1A40] hover:text-[#1A1A40]/80 transition-colors text-base ${spaceMono.className} font-bold`}>
+      <footer className="bg-[#FFC700] py-1">
+        <div className="w-full px-2">
+          <div className="flex flex-row justify-between items-center max-w-[1920px] mx-auto">
+            <nav className="flex space-x-2.5">
+              <Link 
+                href="https://www.collab.land/privacy-policy" 
+                className={`text-[11px] font-bold text-[#1A1A40] hover:text-[#1A1A40]/80 ${spaceMono.className}`}
+              >
                 Privacy Policy
               </Link>
-              <Link href="https://www.collab.land/terms-of-service" className={`text-[#1A1A40] hover:text-[#1A1A40]/80 transition-colors text-base ${spaceMono.className} font-bold`}>
+              <Link 
+                href="https://www.collab.land/terms-of-service" 
+                className={`text-[11px] font-bold text-[#1A1A40] hover:text-[#1A1A40]/80 ${spaceMono.className}`}
+              >
                 Terms
               </Link>
             </nav>
-            <div className="flex justify-center items-center space-x-4">
-              <Link href="https://linktr.ee/collab_land_" passHref>
-                <Button size="icon" variant="ghost" className="hover:bg-transparent hover:text-[#1A1A40]/80 flex items-center justify-center">
-                  <Image src="/LinktreeIcon.svg" alt="Linktree" width={24} height={24} />
-                  <span className="sr-only">Linktree</span>
+            
+            <div className="flex items-center space-x-2">
+              <Link href="https://linktr.ee/collab_land_" target="_blank">
+                <Button size="icon" variant="ghost" className="h-6 w-6 p-0.5 hover:bg-transparent group">
+                  <Image 
+                    src="/LinktreeIcon.svg" 
+                    alt="Linktree" 
+                    width={16} 
+                    height={16} 
+                    className="transition-all duration-200 group-hover:scale-110 group-hover:brightness-75"
+                  />
                 </Button>
               </Link>
-              <Link href="https://discord.gg/collabland" passHref>
-                <Button size="icon" variant="ghost" className="hover:bg-transparent hover:text-[#1A1A40]/80 flex items-center justify-center">
-                  <Image src="/DiscordIcon.svg" alt="Discord" width={24} height={24} />
-                  <span className="sr-only">Discord</span>
+              <Link href="https://discord.gg/collabland" target="_blank">
+                <Button size="icon" variant="ghost" className="h-6 w-6 p-0.5 hover:bg-transparent group">
+                  <Image 
+                    src="/DiscordIcon.svg" 
+                    alt="Discord" 
+                    width={16} 
+                    height={16}
+                    className="transition-all duration-200 group-hover:scale-110 group-hover:brightness-75" 
+                  />
                 </Button>
               </Link>
-              <Link href="https://twitter.com/Collab_Land_" passHref>
-                <Button size="icon" variant="ghost" className="hover:bg-transparent hover:text-[#1A1A40]/80 flex items-center justify-center">
-                  <Image src="/XIcon.svg" alt="X (formerly Twitter)" width={24} height={24} />
-                  <span className="sr-only">X (formerly Twitter)</span>
+              <Link href="https://x.com/collab_land_" target="_blank">
+                <Button size="icon" variant="ghost" className="h-6 w-6 p-0.5 hover:bg-transparent group">
+                  <Image 
+                    src="/XIcon.svg" 
+                    alt="X (formerly Twitter)" 
+                    width={16} 
+                    height={16}
+                    className="transition-all duration-200 group-hover:scale-110 group-hover:brightness-75"
+                  />
                 </Button>
               </Link>
             </div>
-            <p className={`text-[#1A1A40] text-base ${spaceMono.className} font-bold flex items-center gap-2`}>
+
+            <p className={`text-[11px] font-bold flex items-center gap-1 text-[#1A1A40] ${spaceMono.className}`}>
               <Image 
                 src="/LogoIcon.svg" 
                 alt="Collab.Land Logo" 
-                width={24} 
-                height={24} 
+                width={14} 
+                height={14} 
                 className="inline-block"
               />
               Collab.Land® 2024
