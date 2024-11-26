@@ -478,6 +478,7 @@ export function PricingPage() {
                     { href: "https://docs.collab.land", label: "Docs" },
                     { href: "https://bit.ly/3M5lIAo", label: "Integrations" },
                     { href: "https://collabland.substack.com/", label: "Newsletter" },
+                    { href: "https://collab.land/security", label: "Security" },
                     { href: "https://collabland.freshdesk.com/support/tickets/new", label: "Support" },
                     { href: "https://medium.com/collab-land", label: "Updates" },
                     { href: "https://www.youtube.com/channel/UCmyt5i7JmBPd03r2eJ-EaMA", label: "YouTube" }
