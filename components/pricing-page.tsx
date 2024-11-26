@@ -276,22 +276,22 @@ export function PricingPage() {
         <nav className="bg-[#F5F1E6] px-2 py-2 flex flex-row items-center justify-between w-full relative min-h-[40px] z-50">
           <div className="flex items-center">
             <Link href="https://collab.land" className="transform transition-transform hover:scale-105">
-              {/* Desktop logo */}
+              {/* Desktop logo - reduced from 200 to 160 width */}
               <Image
                 src="/Logo-Color.png"
                 alt="Collab.Land"
-                width={200}
-                height={40}
-                className="h-8 w-auto hover:brightness-110 transition-all hidden md:block"
+                width={160}
+                height={32}
+                className="h-6 w-auto hover:brightness-110 transition-all hidden md:block"
                 priority
               />
-              {/* Mobile logo */}
+              {/* Mobile logo - reduced from 32 to 28 width/height */}
               <Image
                 src="/LogoIconColor.svg"
                 alt="Collab.Land"
-                width={32}
-                height={32}
-                className="h-9 w-auto hover:brightness-110 transition-all md:hidden"
+                width={28}
+                height={28}
+                className="h-7 w-auto hover:brightness-110 transition-all md:hidden"
                 priority
               />
             </Link>
