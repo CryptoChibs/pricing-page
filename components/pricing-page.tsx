@@ -158,7 +158,7 @@ const faqs = [
   },
   {
     question: "How can I request a new Blockchain or Wallet?",
-    answer: <>If you are interested in a new Blockchain or Wallet Integration, please let us know by filling out <a href="https://bit.ly/3M5lIAo" className="text-[#3A7D7B] hover:text-[#2A5D5B] underline" target="_blank" rel="noopener noreferrer">this form</a>.</>,
+    answer: <>If you are interested in a new Blockchain or Wallet Integration, please let us know by filling out <a href="https://bit.ly/3M5lIAo" className="text-[#8C92AC] hover:text-[#FFC700]" target="_blank" rel="noopener noreferrer">this form</a>.</>,
   },
 ]
 // ----- Supported Chains -----
@@ -577,12 +577,12 @@ export function PricingPage() {
       </header>
 
       <main className="pt-[40px]">
-        <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-8">
+        <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-16">
           <div className="max-w-3xl mx-auto relative z-10">
             <h1 className="text-2xl font-bold text-[#F5F1E6] text-center">
               Subscription Plans
             </h1>
-            <p className={`text-sm text-center text-[#B8B9BE] mb-8 ${spaceMono.className}`}>
+            <p className={`text-sm text-center text-[#8C92AC] mb-8 ${spaceMono.className}`}>
               No hidden fees. No surprises. Start for free and upgrade as you grow.
             </p>
             <Tabs defaultValue="discord" className="mb-8">
@@ -896,6 +896,17 @@ export function PricingPage() {
                   </div>
                 ))}
               </div>
+              <p className="text-center mt-6 text-[#B8B9BE] text-xs">
+                If you are interested in a new Blockchain or Wallet Integration, please let us know by filling out{' '}
+                <a 
+                  href="https://bit.ly/3M5lIAo" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-[#8C92AC] hover:text-[#FFC700]"
+                >
+                  this form
+                </a>
+              </p>
             </div>
           </div>
         </section>
