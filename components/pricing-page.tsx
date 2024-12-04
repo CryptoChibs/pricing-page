@@ -19,7 +19,7 @@ const discordPlans = [
   {
     name: "Starter",
     price: "Free",
-    description: <>For small communities just getting <br/>started</>,
+    description: <>Simple, effective choice for smaller communities or those just starting out</>,
     features: [
       "Up to 4 TGRs",
       "Unlimited members",
@@ -273,25 +273,25 @@ export function PricingPage() {
       <header className="fixed w-full top-0 z-[100] shadow-lg after:absolute after:inset-0 after:shadow-[0_4px_12px_rgba(0,0,0,0.2)] after:pointer-events-none">
         <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#FFC700] to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#FFC700]/5 to-transparent pointer-events-none" />
-        <nav className="bg-[#F5F1E6] px-2 py-2 flex flex-row items-center justify-between w-full relative min-h-[40px] z-50">
+        <nav className="bg-[#F5F1E6] px-2 py-3 flex flex-row items-center justify-between w-full relative min-h-[48px] z-50">
           <div className="flex items-center">
             <Link href="https://collab.land" className="transform transition-transform hover:scale-105">
-              {/* Desktop logo - reduced from 200 to 160 width */}
+              {/* Desktop logo */}
               <Image
                 src="/Logo-Color.png"
                 alt="Collab.Land"
-                width={160}
-                height={32}
-                className="h-6 w-auto hover:brightness-110 transition-all hidden md:block"
+                width={180}
+                height={36}
+                className="h-8 w-auto hover:brightness-110 transition-all hidden md:block"
                 priority
               />
-              {/* Mobile logo - reduced from 32 to 28 width/height */}
+              {/* Mobile logo */}
               <Image
                 src="/LogoIconColor.svg"
                 alt="Collab.Land"
-                width={28}
-                height={28}
-                className="h-7 w-auto hover:brightness-110 transition-all md:hidden"
+                width={32}
+                height={32}
+                className="h-8 w-auto hover:brightness-110 transition-all md:hidden"
                 priority
               />
             </Link>
@@ -303,7 +303,7 @@ export function PricingPage() {
                 <Button 
                   variant="ghost" 
                   className={`
-                    text-[13px] h-8 px-3 py-1 
+                    text-base h-8 px-3 py-1 
                     text-[#1A1A40] hover:text-[#FFB800] 
                     transition-all duration-300 
                     ${spaceMono.className} 
@@ -349,7 +349,7 @@ export function PricingPage() {
                       className="
                         block px-4 py-2 
                         text-[#1A1A40] 
-                        text-[13px]
+                        text-base
                         font-bold
                         hover:bg-[#FFC700]/80 
                         hover:translate-x-1
@@ -370,7 +370,7 @@ export function PricingPage() {
                 <Button 
                   variant="ghost" 
                   className={`
-                    text-[13px] h-8 px-3 py-1 
+                    text-base h-8 px-3 py-1 
                     text-[#1A1A40] hover:text-[#FFB800] 
                     transition-all duration-300 
                     ${spaceMono.className} 
@@ -418,7 +418,7 @@ export function PricingPage() {
                       className="
                         block px-4 py-2 
                         text-[#1A1A40] 
-                        text-[13px]
+                        text-base
                         font-bold
                         hover:bg-[#FFC700]/80 
                         hover:translate-x-1
@@ -439,7 +439,7 @@ export function PricingPage() {
                 <Button 
                   variant="ghost" 
                   className={`
-                    text-[13px] h-8 px-3 py-1 
+                    text-base h-8 px-3 py-1 
                     text-[#1A1A40] hover:text-[#FFB800] 
                     transition-all duration-300 
                     ${spaceMono.className} 
@@ -489,7 +489,7 @@ export function PricingPage() {
                       className="
                         block px-4 py-2 
                         text-[#1A1A40] 
-                        text-[13px]
+                        text-base
                         font-bold
                         hover:bg-[#FFC700]/80 
                         hover:translate-x-1
@@ -510,7 +510,7 @@ export function PricingPage() {
                 <Button 
                   variant="ghost" 
                   className={`
-                    text-[13px] h-8 px-3 py-1 
+                    text-base h-8 px-3 py-1 
                     text-[#1A1A40] hover:text-[#FFB800] 
                     transition-all duration-300 
                     ${spaceMono.className} 
@@ -557,7 +557,7 @@ export function PricingPage() {
                       className="
                         block px-4 py-2 
                         text-[#1A1A40] 
-                        text-[13px]
+                        text-base
                         font-bold
                         hover:bg-[#FFC700]/80 
                         hover:translate-x-1
@@ -577,18 +577,18 @@ export function PricingPage() {
         </nav>
       </header>
 
-      <main className="pt-[40px]">
+      <main className="pt-[48px]">
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-16">
           <div className="max-w-3xl mx-auto relative z-10">
-            <h1 className="text-2xl font-bold text-[#F5F1E6] text-center">
+            <h1 className="text-2xl font-bold text-[#FFC700] text-center mb-4">
               Subscription Plans
             </h1>
-            <p className={`text-sm text-center text-[#8C92AC] mb-8 ${spaceMono.className}`}>
+            <p className={`text-base text-center text-[#F5F1E6] mb-8 ${spaceMono.className}`}>
               No hidden fees. No surprises. Start for free and upgrade as you grow.
             </p>
             <Tabs defaultValue="discord" className="mb-8">
               <div className="max-w-5xl mx-auto md:px-0 px-12">
-                <TabsList className="grid w-full max-w-[445px] mx-auto grid-cols-2 bg-[#F5F1E6] mb-6 p-1 h-8 rounded-lg relative overflow-hidden">
+                <TabsList className="grid w-full max-w-[445px] mx-auto grid-cols-2 bg-[#F5F1E6] mb-6 p-1 h-10 rounded-lg relative overflow-hidden">
                   <TabsTrigger 
                     value="discord" 
                     className={`
@@ -596,7 +596,7 @@ export function PricingPage() {
                       font-semibold 
                       transition-all 
                       duration-300
-                      text-xs
+                      text-sm
                       h-full
                       relative
                       rounded-md
@@ -619,7 +619,7 @@ export function PricingPage() {
                       font-semibold 
                       transition-all 
                       duration-300
-                      text-xs
+                      text-sm
                       h-full
                       relative
                       rounded-md
@@ -655,21 +655,29 @@ export function PricingPage() {
                             className="pl-1 sm:pl-2 basis-full sm:basis-1/2 md:basis-1/3"
                           >
                             <div className="p-0.5">
-                              <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[400px] max-w-[220px] mx-auto">
-                                <CardHeader className="flex-none pt-2 px-2">
-                                  <CardTitle className="text-base font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
-                                  <CardDescription className="text-[#1A1A40]/80 text-center min-h-[28px] text-[10px]">{plan.description}</CardDescription>
+                              <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[450px] max-w-[240px] mx-auto">
+                                <CardHeader className="flex-none pt-2 px-2 h-[100px] flex flex-col justify-between">
+                                  <CardTitle className={`text-lg font-bold text-[#1A1A40] text-center ${spaceMono.className}`}>
+                                    {plan.name}
+                                  </CardTitle>
+                                  <CardDescription className={`text-[#1A1A40]/80 text-center text-xs ${ibmPlexSans.className}`}>
+                                    {plan.description}
+                                  </CardDescription>
                                 </CardHeader>
                                 <CardContent className="flex-grow px-2">
-                                  <div className="flex items-baseline justify-center mb-2">
-                                    <span className="text-lg font-extrabold text-[#1A1A40]">{plan.price}</span>
-                                    {plan.period && <span className="text-[#1A1A40]/80 ml-1 text-[10px]">{plan.period}</span>}
+                                  <div className="flex items-baseline justify-center mb-4 h-[40px]">
+                                    <span className={`text-lg font-extrabold text-[#1A1A40] ${ibmPlexSans.className}`}>
+                                      {plan.price}
+                                    </span>
+                                    {plan.period && <span className={`text-[#1A1A40]/80 ml-1 text-xs ${ibmPlexSans.className}`}>
+                                      {plan.period}
+                                    </span>}
                                   </div>
-                                  <ul className="space-y-0.5 mb-2 text-[#1A1A40]">
+                                  <ul className={`space-y-0.5 mb-2 text-[#1A1A40] ${ibmPlexSans.className}`}>
                                     {plan.features.map((feature, index) => (
                                       <li key={index} className="flex items-start">
-                                        <Check className="h-3 w-3 text-[#3A7D7B] mr-1 mt-0.5 flex-shrink-0" />
-                                        <span className="text-[10px] leading-tight">{feature}</span>
+                                        <Check className="h-3.5 w-3.5 text-[#3A7D7B] mr-1 mt-0.5 flex-shrink-0" />
+                                        <span className="text-xs leading-tight">{feature}</span>
                                       </li>
                                     ))}
                                   </ul>
@@ -677,7 +685,7 @@ export function PricingPage() {
                                 <CardFooter className="flex-none pb-2 px-2">
                                   <Button 
                                     asChild 
-                                    className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group h-7 text-[10px]"
+                                    className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group h-8 text-sm font-medium"
                                   >
                                     {plan.cta === "Contact Us" ? (
                                       <a href="mailto:anjali@collab.land">
@@ -763,21 +771,29 @@ export function PricingPage() {
                             className="pl-1 sm:pl-2 basis-full sm:basis-1/2 md:basis-1/3"
                           >
                             <div className="p-0.5">
-                              <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[400px] max-w-[220px] mx-auto">
-                                <CardHeader className="flex-none pt-2 px-2">
-                                  <CardTitle className="text-base font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
-                                  <CardDescription className="text-[#1A1A40]/80 text-center min-h-[28px] text-[10px]">{plan.description}</CardDescription>
+                              <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[450px] max-w-[240px] mx-auto">
+                                <CardHeader className="flex-none pt-2 px-2 h-[100px] flex flex-col justify-between">
+                                  <CardTitle className={`text-lg font-bold text-[#1A1A40] text-center ${spaceMono.className}`}>
+                                    {plan.name}
+                                  </CardTitle>
+                                  <CardDescription className={`text-[#1A1A40]/80 text-center text-xs ${ibmPlexSans.className}`}>
+                                    {plan.description}
+                                  </CardDescription>
                                 </CardHeader>
                                 <CardContent className="flex-grow px-2">
-                                  <div className="flex items-baseline justify-center mb-2">
-                                    <span className="text-lg font-extrabold text-[#1A1A40]">{plan.price}</span>
-                                    {plan.period && <span className="text-[#1A1A40]/80 ml-1 text-[10px]">{plan.period}</span>}
+                                  <div className="flex items-baseline justify-center mb-4 h-[40px]">
+                                    <span className={`text-lg font-extrabold text-[#1A1A40] ${ibmPlexSans.className}`}>
+                                      {plan.price}
+                                    </span>
+                                    {plan.period && <span className={`text-[#1A1A40]/80 ml-1 text-xs ${ibmPlexSans.className}`}>
+                                      {plan.period}
+                                    </span>}
                                   </div>
-                                  <ul className="space-y-0.5 mb-2 text-[#1A1A40]">
+                                  <ul className={`space-y-0.5 mb-2 text-[#1A1A40] ${ibmPlexSans.className}`}>
                                     {plan.features.map((feature, index) => (
                                       <li key={index} className="flex items-start">
-                                        <Check className="h-3 w-3 text-[#3A7D7B] mr-1 mt-0.5 flex-shrink-0" />
-                                        <span className="text-[10px] leading-tight">{feature}</span>
+                                        <Check className="h-3.5 w-3.5 text-[#3A7D7B] mr-1 mt-0.5 flex-shrink-0" />
+                                        <span className="text-xs leading-tight">{feature}</span>
                                       </li>
                                     ))}
                                   </ul>
@@ -785,7 +801,7 @@ export function PricingPage() {
                                 <CardFooter className="flex-none pb-2 px-2">
                                   <Button 
                                     asChild 
-                                    className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group h-7 text-[10px]"
+                                    className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group h-8 text-sm font-medium"
                                   >
                                     {plan.cta === "Contact Us" ? (
                                       <a href="mailto:anjali@collab.land">
@@ -813,21 +829,29 @@ export function PricingPage() {
                   <div className="hidden md:flex justify-center gap-2 max-w-3xl mx-auto">
                     {telegramPlans.map((plan, index) => (
                       <div key={plan.name} className="p-0.5 w-[220px]">
-                        <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[400px]">
-                          <CardHeader className="flex-none pt-2 px-2">
-                            <CardTitle className="text-base font-bold text-[#1A1A40] text-center">{plan.name}</CardTitle>
-                            <CardDescription className="text-[#1A1A40]/80 text-center min-h-[28px] text-[10px]">{plan.description}</CardDescription>
+                        <Card className="bg-[#F5F1E6]/95 border-2 border-[#4A4A7E] flex flex-col h-[450px]">
+                          <CardHeader className="flex-none pt-2 px-2 h-[100px] flex flex-col justify-between">
+                            <CardTitle className={`text-lg font-bold text-[#1A1A40] text-center ${spaceMono.className}`}>
+                              {plan.name}
+                            </CardTitle>
+                            <CardDescription className={`text-[#1A1A40]/80 text-center text-xs ${ibmPlexSans.className}`}>
+                              {plan.description}
+                            </CardDescription>
                           </CardHeader>
                           <CardContent className="flex-grow px-2">
-                            <div className="flex items-baseline justify-center mb-2">
-                              <span className="text-lg font-extrabold text-[#1A1A40]">{plan.price}</span>
-                              {plan.period && <span className="text-[#1A1A40]/80 ml-1 text-[10px]">{plan.period}</span>}
+                            <div className="flex items-baseline justify-center mb-4 h-[40px]">
+                              <span className={`text-lg font-extrabold text-[#1A1A40] ${ibmPlexSans.className}`}>
+                                {plan.price}
+                              </span>
+                              {plan.period && <span className={`text-[#1A1A40]/80 ml-1 text-xs ${ibmPlexSans.className}`}>
+                                {plan.period}
+                              </span>}
                             </div>
-                            <ul className="space-y-0.5 mb-2 text-[#1A1A40]">
+                            <ul className={`space-y-0.5 mb-2 text-[#1A1A40] ${ibmPlexSans.className}`}>
                               {plan.features.map((feature, index) => (
                                 <li key={index} className="flex items-start">
-                                  <Check className="h-3 w-3 text-[#3A7D7B] mr-1 mt-0.5 flex-shrink-0" />
-                                  <span className="text-[10px] leading-tight">{feature}</span>
+                                  <Check className="h-3.5 w-3.5 text-[#3A7D7B] mr-1 mt-0.5 flex-shrink-0" />
+                                  <span className="text-xs leading-tight">{feature}</span>
                                 </li>
                               ))}
                             </ul>
@@ -835,7 +859,7 @@ export function PricingPage() {
                           <CardFooter className="flex-none pb-2 px-2">
                             <Button 
                               asChild 
-                              className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group h-7 text-[10px]"
+                              className="w-full bg-[#FFC700] hover:bg-[#FFC700]/90 text-[#1A1A40] transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group h-8 text-sm font-medium"
                             >
                               {plan.cta === "Contact Us" ? (
                                 <a href="mailto:anjali@collab.land">
@@ -863,11 +887,12 @@ export function PricingPage() {
         <section className="bg-[#1A1A40] pt-4 pb-8 px-4 sm:px-6 lg:px-8 border-t-2 border-b-2 border-[#3A3A6E]">
           <div className="max-w-5xl mx-auto flex flex-col items-center">
             <div className="mb-6 pb-6 border-b-2 border-[#3A3A6E] w-full max-w-4xl">
-              <h2 className="text-xl font-bold text-center mb-6 text-[#F5F1E6]">Supported Chains and Networks</h2>
+              <h2 className="text-2xl font-bold text-center mb-6 text-[#FFC700]">
+                Supported Chains and Networks
+              </h2>
               <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 px-8 sm:px-12">
                 {supportedChains.map((chain, index) => (
-                  <div key={index} className="text-[#B8B9BE] flex items-center pl-4 mb-4 text-xs">
-                    <div className="w-2 h-2 rotate-45 bg-[#FFC700] mr-2 flex-shrink-0 transform -translate-y-[1px]" />
+                  <div key={index} className={`text-[#F5F1E6] mb-4 text-sm ${spaceMono.className} list-item ml-4`}>
                     <a 
                       href={chain.url} 
                       target="_blank" 
@@ -881,11 +906,12 @@ export function PricingPage() {
               </div>
             </div>
             <div className="w-full max-w-4xl">
-              <h2 className="text-xl font-bold text-center mb-6 text-[#F5F1E6]">Supported Wallets and Verifications</h2>
+              <h2 className="text-2xl font-bold text-center mb-6 text-[#FFC700]">
+                Supported Wallets and Verifications
+              </h2>
               <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 px-8 sm:px-12">
                 {supportedWallets.map((wallet, index) => (
-                  <div key={index} className="text-[#B8B9BE] flex items-center pl-4 mb-4 text-xs">
-                    <div className="w-2 h-2 rotate-45 bg-[#FFC700] mr-2 flex-shrink-0 transform -translate-y-[1px]" />
+                  <div key={index} className={`text-[#F5F1E6] mb-4 text-sm ${spaceMono.className} list-item ml-4`}>
                     <a 
                       href={wallet.url} 
                       target="_blank" 
@@ -897,13 +923,13 @@ export function PricingPage() {
                   </div>
                 ))}
               </div>
-              <p className="text-center mt-6 text-[#B8B9BE] text-xs">
+              <p className={`text-center mt-12 text-[#F5F1E6] text-xs ${spaceMono.className}`}>
                 If you are interested in a new Blockchain or Wallet Integration, please let us know by filling out{' '}
                 <a 
                   href="https://bit.ly/3M5lIAo" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-[#8C92AC] hover:text-[#FFC700]"
+                  className="text-[#F5F1E6] hover:text-[#FFC700]"
                 >
                   this form
                 </a>
@@ -913,7 +939,9 @@ export function PricingPage() {
         </section>
         {/* Add the comparison table right after the supported chains and wallets section, but before the FAQs */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8">
-          <h2 className="text-xl font-bold text-center mb-4 text-[#F5F1E6]">Plans Comparison</h2>
+          <h2 className="text-2xl font-bold text-center mb-4 text-[#FFC700]">
+            Plans Comparison
+          </h2>
           
           {/* Desktop Table */}
           <div className="hidden md:block overflow-x-auto">
@@ -1006,7 +1034,7 @@ export function PricingPage() {
         {/* FAQ Section */}
         <section className="pt-4 pb-8 px-4 sm:px-6 lg:px-8 bg-[#1A1A40] border-t-2 border-b-2 border-[#3A3A6E] relative">
           <div className="max-w-2xl mx-auto relative z-10">
-            <h2 className="text-xl font-bold text-center mb-4 text-[#F5F1E6]">
+            <h2 className="text-2xl font-bold text-center mb-4 text-[#FFC700]">
               Frequently Asked Questions
             </h2>
             <Accordion type="single" collapsible className="space-y-3">
@@ -1022,7 +1050,7 @@ export function PricingPage() {
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent 
-                    className="px-4 pt-2 pb-3 text-[#1A1A40]/80 text-xs"
+                    className={`px-4 pt-2 pb-3 text-[#1A1A40]/80 text-xs ${spaceMono.className}`}
                   >
                     {faq.answer}
                   </AccordionContent>
@@ -1033,66 +1061,66 @@ export function PricingPage() {
         </section>
       </main>
       {/* Footer section with privacy policy and terms of service links */}
-      <footer className="bg-[#FFC700] py-1">
-        <div className="w-full px-2">
+      <footer className="bg-[#FFC700] py-2">
+        <div className="w-full px-4">
           <div className="flex flex-row justify-between items-center max-w-[1920px] mx-auto">
-            <nav className="flex space-x-2.5">
+            <nav className="flex space-x-4">
               <Link 
                 href="https://www.collab.land/privacy-policy" 
-                className={`text-[11px] font-bold text-[#1A1A40] hover:text-[#1A1A40]/80 ${spaceMono.className}`}
+                className={`text-sm font-bold text-[#1A1A40] hover:text-[#1A1A40]/80 ${spaceMono.className}`}
               >
                 Privacy Policy
               </Link>
               <Link 
                 href="https://www.collab.land/terms-of-service" 
-                className={`text-[11px] font-bold text-[#1A1A40] hover:text-[#1A1A40]/80 ${spaceMono.className}`}
+                className={`text-sm font-bold text-[#1A1A40] hover:text-[#1A1A40]/80 ${spaceMono.className}`}
               >
                 Terms
               </Link>
             </nav>
             
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-3">
               <Link href="https://linktr.ee/collab_land_" target="_blank">
-                <Button size="icon" variant="ghost" className="h-6 w-6 p-0.5 hover:bg-transparent group">
+                <Button size="icon" variant="ghost" className="h-8 w-8 p-1 hover:bg-transparent group">
                   <Image 
                     src="/LinktreeIcon.svg" 
                     alt="Linktree" 
-                    width={16} 
-                    height={16} 
+                    width={20} 
+                    height={20} 
                     className="transition-all duration-200 group-hover:scale-110 group-hover:brightness-75"
                   />
                 </Button>
               </Link>
               <Link href="https://discord.gg/collabland" target="_blank">
-                <Button size="icon" variant="ghost" className="h-6 w-6 p-0.5 hover:bg-transparent group">
+                <Button size="icon" variant="ghost" className="h-8 w-8 p-1 hover:bg-transparent group">
                   <Image 
                     src="/DiscordIcon.svg" 
                     alt="Discord" 
-                    width={16} 
-                    height={16}
+                    width={20} 
+                    height={20}
                     className="transition-all duration-200 group-hover:scale-110 group-hover:brightness-75" 
                   />
                 </Button>
               </Link>
               <Link href="https://x.com/collab_land_" target="_blank">
-                <Button size="icon" variant="ghost" className="h-6 w-6 p-0.5 hover:bg-transparent group">
+                <Button size="icon" variant="ghost" className="h-8 w-8 p-1 hover:bg-transparent group">
                   <Image 
                     src="/XIcon.svg" 
                     alt="X (formerly Twitter)" 
-                    width={16} 
-                    height={16}
+                    width={20} 
+                    height={20}
                     className="transition-all duration-200 group-hover:scale-110 group-hover:brightness-75"
                   />
                 </Button>
               </Link>
             </div>
 
-            <p className={`text-[11px] font-bold flex items-center gap-1 text-[#1A1A40] ${spaceMono.className}`}>
+            <p className={`text-sm font-bold flex items-center gap-1.5 text-[#1A1A40] ${spaceMono.className}`}>
               <Image 
                 src="/LogoIcon.svg" 
                 alt="Collab.Land Logo" 
-                width={14} 
-                height={14} 
+                width={18} 
+                height={18} 
                 className="inline-block"
               />
               Collab.Land® 2024
