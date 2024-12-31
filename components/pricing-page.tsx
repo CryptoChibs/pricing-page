@@ -201,6 +201,10 @@ const supportedChains = [
   { name: "Vitruveo", url: "https://www.vitruveo.xyz/" },
   { name: "XRPL", url: "https://xrpl.org" }
 ]
+
+// Add the note here
+const testnetNote = "Please note that blockchain testnets are for testing purposes only. Collab.Land reserves the right to suspend support for testnets at any time."
+
 // ----- Supported Wallets -----
 const supportedWallets = [
   { name: "Bitski", url: "https://www.bitski.com/" },
@@ -904,6 +908,9 @@ export function PricingPage() {
                   </div>
                 ))}
               </div>
+              <p className={`text-center mt-4 mb-8 text-[#F5F1E6] text-xs ${spaceMono.className}`}>
+                {testnetNote}
+              </p>
             </div>
             <div className="w-full max-w-4xl">
               <h2 className="text-2xl font-bold text-center mb-6 text-[#FFC700]">
