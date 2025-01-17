@@ -96,7 +96,7 @@ const telegramPlans = [
     price: "Free",
     description: "For small communities\njust getting started",
     features: [
-      "1 TG Group",
+      "1 TG group",
       "1 TGA",
       "Unlimited members",
       "Balance checks every week",
@@ -113,13 +113,13 @@ const telegramPlans = [
     period: "/month",
     description: "For established Telegram communities requiring advanced features",
     features: [
-      "Up to 10 TG groups",
-      "Up to 5 TGAs/per group",
+      "1 TG group",
+      "Up to 20 TGAs",
       "Balance checks every 24 hours",
       "Priority support",
       "AND/OR conditions",
       "Customize Welcome Message",
-      "All features from STARTER included",
+      "All features from STARTER",
     ],
     cta: "Subscribe Now",
     popular: true,
@@ -164,6 +164,8 @@ const faqs = [
 // ----- Supported Chains -----
 const supportedChains = [
   { name: "Amoy (Polygon testnet)", url: "https://polygon.technology/blog/introducing-the-amoy-testnet-for-polygon-pos" },
+  { name: "ApeChain", url: "https://apechain.com" },
+  { name: "ApeChain Curtis (Testnet)", url: "https://apechain.com" },
   { name: "Arbitrum Nova", url: "https://nova.arbitrum.io/" },
   { name: "Arbitrum One", url: "https://arbitrum.io/" },
   { name: "Astar zkEVM", url: "https://astar.network/" },
