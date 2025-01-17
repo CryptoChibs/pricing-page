@@ -347,7 +347,7 @@ export function PricingPage() {
                   {[
                     { href: "https://collab.land/overview", label: "Overview" },
                     { href: "https://collab.land/team", label: "Team" },
-                    { href: "https://docs.collab.land/dao/token/token_overview", label: "$COLLAB" }
+                    { href: "https://docs.collab.land/help-docs/key-features/token", label: "$COLLAB" }
                   ].map((item) => (
                     <Link 
                       key={item.href}
