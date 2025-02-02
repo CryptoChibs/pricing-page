@@ -1,10 +1,11 @@
 'use client'
 
 import * as React from "react"
-import { ChevronLeft, ChevronRight, Check, X, ChevronDown } from "lucide-react"
+import { ChevronLeft, ChevronRight, Check, X, ChevronDown, Menu } from "lucide-react"
 import Link from "next/link"
 import { IBM_Plex_Sans, Space_Mono } from 'next/font/google'
 import Image from 'next/image'
+import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
@@ -130,7 +131,7 @@ const telegramPlans = [
 const faqs = [
   {
     question: "What is a Tokenized Community?",
-    answer: "A Tokenized Community is a server/group where access, roles, or perks are granted based on members owning specific digital assets, like tokens or NFTs. Holding these tokens acts as a “membership pass,” letting members join, engage, and access exclusive content or privileges within the group. ",
+    answer: "A Tokenized Community is a server/group where access, roles, or perks are granted based on members owning specific digital assets, like tokens or NFTs. Holding these tokens acts as a \"membership pass,\" letting members join, engage, and access exclusive content or privileges within the group.",
   },
   {
     question: "What is Token Gating?",
@@ -142,7 +143,7 @@ const faqs = [
   },
   {
     question: "What are balance checks and how often are they performed?",
-    answer: "This feature helps ensure that members meet the qualifications required to remain in your server or group. For members on the Starter tier, balance checks occur every 7 days. Basic and higher tiers enjoy daily checks, occurring every 24 hours. Additionally, our Exclusive and higher tiers include 5 bonus “admin-initiated” balance checks per month, giving you extra control and flexibility.",
+    answer: "This feature helps ensure that members meet the qualifications required to remain in your server or group. For members on the Starter tier, balance checks occur every 7 days. Basic and higher tiers enjoy daily checks, occurring every 24 hours. Additionally, our Exclusive and higher tiers include 5 bonus \"admin-initiated\" balance checks per month, giving you extra control and flexibility.",
   },
   {
     question: "Can I upgrade or downgrade my plan?",
@@ -267,6 +268,16 @@ const prices = ['Free', '$17.99', '$35', '$149', 'Custom']
 
 export function PricingPage() {
   const [carousel, setCarousel] = React.useState<CarouselApi>()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [expandedSections, setExpandedSections] = useState<string[]>([])
+
+  const toggleSection = (title: string) => {
+    setExpandedSections(prev => 
+      prev.includes(title) 
+        ? prev.filter(t => t !== title)
+        : [...prev, title]
+    )
+  }
 
   React.useEffect(() => {
     if (!carousel) {
@@ -303,7 +314,8 @@ export function PricingPage() {
             </Link>
           </div>
           
-          <div className="flex items-center gap-2">
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-2">
             <Popover>
               <PopoverTrigger asChild>
                 <Button 
@@ -580,6 +592,92 @@ export function PricingPage() {
               </PopoverContent>
             </Popover>
           </div>
+
+          {/* Mobile Menu Button */}
+          <Button 
+            variant="ghost"
+            className="md:hidden text-[#1A1A40] hover:bg-[#FFC700]/10"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <Menu className="h-6 w-6" />
+          </Button>
+
+          {/* Mobile Menu Overlay */}
+          {isMenuOpen && (
+            <div className="md:hidden absolute top-full left-0 right-0 bg-[#F5F1E6] border-t border-[#FFC700]/20 shadow-lg">
+              <div className="p-4 space-y-2">
+                {[
+                  {
+                    title: 'About',
+                    items: [
+                      { href: "https://collab.land/overview", label: "Overview" },
+                      { href: "https://collab.land/team", label: "Team" },
+                      { href: "https://docs.collab.land/help-docs/key-features/token", label: "$COLLAB" }
+                    ]
+                  },
+                  {
+                    title: 'Admins',
+                    items: [
+                      { href: "https://cc.collab.land", label: "Command Center" },
+                      { href: "https://docs.collab.land", label: "Docs" },
+                      { href: "https://invite.collab.land", label: "Invite" },
+                      { href: "https://bit.ly/3M5lIAo", label: "Integrations" },
+                      { href: "https://pricing.collab.land", label: "Premium" }
+                    ]
+                  },
+                  {
+                    title: 'Resources',
+                    items: [
+                      { href: "https://docs.collab.land", label: "Docs" },
+                      { href: "https://bit.ly/3M5lIAo", label: "Integrations" },
+                      { href: "https://collabland.substack.com/", label: "Newsletter" },
+                      { href: "https://collab.land/security", label: "Security" },
+                      { href: "https://collabland.freshdesk.com/support/tickets/new", label: "Support" },
+                      { href: "https://medium.com/collab-land", label: "Updates" },
+                      { href: "https://www.youtube.com/channel/UCmyt5i7JmBPd03r2eJ-EaMA", label: "YouTube" }
+                    ]
+                  },
+                  {
+                    title: 'Socials',
+                    items: [
+                      { href: "https://discord.gg/collabland", label: "Discord" },
+                      { href: "https://www.instagram.com/collab_land_", label: "Instagram" },
+                      { href: "https://linktr.ee/collab_land_", label: "Linktree" },
+                      { href: "https://twitter.com/Collab_Land_", label: "X" }
+                    ]
+                  }
+                ].map((section) => (
+                  <div key={section.title} className="border-b border-[#FFC700]/20 last:border-none">
+                    <button
+                      onClick={() => toggleSection(section.title)}
+                      className="flex items-center justify-between w-full py-2 text-[#1A1A40]"
+                    >
+                      <span className={`${spaceMono.className} font-bold`}>{section.title}</span>
+                      <ChevronRight 
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          expandedSections.includes(section.title) ? 'rotate-90' : ''
+                        }`}
+                      />
+                    </button>
+                    {expandedSections.includes(section.title) && (
+                      <div className="pl-4 pb-2 space-y-2">
+                        {section.items.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            className="block py-1.5 text-sm text-[#1A1A40]/80 hover:text-[#1A1A40] hover:translate-x-1 transition-all duration-200"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </nav>
       </header>
 
@@ -1069,68 +1167,55 @@ export function PricingPage() {
           </div>
         </section>
       </main>
-      {/* Footer section with privacy policy and terms of service links */}
+      {/* Footer section */}
       <footer className="bg-[#FFC700] py-2">
         <div className="w-full px-4">
-          <div className="flex flex-row justify-between items-center max-w-[1920px] mx-auto">
-            <nav className="flex space-x-4">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0 max-w-[1920px] mx-auto">
+            {/* Links */}
+            <nav className="flex space-x-4 order-2 sm:order-1">
               <Link 
                 href="https://www.collab.land/privacy-policy" 
-                className={`text-sm font-bold text-[#1A1A40] hover:text-[#1A1A40]/80 ${spaceMono.className}`}
+                className={`text-xs sm:text-sm font-bold text-[#1A1A40] hover:text-[#1A1A40]/80 ${spaceMono.className}`}
               >
                 Privacy Policy
               </Link>
               <Link 
                 href="https://www.collab.land/terms-of-service" 
-                className={`text-sm font-bold text-[#1A1A40] hover:text-[#1A1A40]/80 ${spaceMono.className}`}
+                className={`text-xs sm:text-sm font-bold text-[#1A1A40] hover:text-[#1A1A40]/80 ${spaceMono.className}`}
               >
                 Terms
               </Link>
             </nav>
             
-            <div className="flex items-center space-x-3">
-              <Link href="https://linktr.ee/collab_land_" target="_blank">
-                <Button size="icon" variant="ghost" className="h-8 w-8 p-1 hover:bg-transparent group">
-                  <Image 
-                    src="/LinktreeIcon.svg" 
-                    alt="Linktree" 
-                    width={20} 
-                    height={20} 
-                    className="transition-all duration-200 group-hover:scale-110 group-hover:brightness-75"
-                  />
-                </Button>
-              </Link>
-              <Link href="https://discord.gg/collabland" target="_blank">
-                <Button size="icon" variant="ghost" className="h-8 w-8 p-1 hover:bg-transparent group">
-                  <Image 
-                    src="/DiscordIcon.svg" 
-                    alt="Discord" 
-                    width={20} 
-                    height={20}
-                    className="transition-all duration-200 group-hover:scale-110 group-hover:brightness-75" 
-                  />
-                </Button>
-              </Link>
-              <Link href="https://x.com/collab_land_" target="_blank">
-                <Button size="icon" variant="ghost" className="h-8 w-8 p-1 hover:bg-transparent group">
-                  <Image 
-                    src="/XIcon.svg" 
-                    alt="X (formerly Twitter)" 
-                    width={20} 
-                    height={20}
-                    className="transition-all duration-200 group-hover:scale-110 group-hover:brightness-75"
-                  />
-                </Button>
-              </Link>
+            {/* Social Icons */}
+            <div className="flex items-center space-x-3 order-1 sm:order-2">
+              {[
+                { href: "https://linktr.ee/collab_land_", icon: "/LinktreeIcon.svg", alt: "Linktree" },
+                { href: "https://discord.gg/collabland", icon: "/DiscordIcon.svg", alt: "Discord" },
+                { href: "https://x.com/collab_land_", icon: "/XIcon.svg", alt: "X (formerly Twitter)" }
+              ].map((social) => (
+                <Link key={social.href} href={social.href} target="_blank">
+                  <Button size="icon" variant="ghost" className="h-6 w-6 sm:h-8 sm:w-8 p-1 hover:bg-transparent group">
+                    <Image 
+                      src={social.icon}
+                      alt={social.alt}
+                      width={16}
+                      height={16}
+                      className="transition-all duration-200 group-hover:scale-110 group-hover:brightness-75 sm:w-5 sm:h-5"
+                    />
+                  </Button>
+                </Link>
+              ))}
             </div>
 
-            <p className={`text-sm font-bold flex items-center gap-1.5 text-[#1A1A40] ${spaceMono.className}`}>
+            {/* Copyright */}
+            <p className={`text-xs sm:text-sm font-bold flex items-center gap-1.5 text-[#1A1A40] order-3 ${spaceMono.className}`}>
               <Image 
                 src="/LogoIcon.svg" 
                 alt="Collab.Land Logo" 
-                width={18} 
-                height={18} 
-                className="inline-block"
+                width={14}
+                height={14}
+                className="inline-block sm:w-[18px] sm:h-[18px]"
               />
               Collab.Land® 2024
             </p>
