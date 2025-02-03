@@ -925,8 +925,23 @@ export function PricingPage() {
                           </CarouselItem>
                         ))}
                       </CarouselContent>
-                      {/* Carousel controls */}
                     </Carousel>
+
+                    {/* Add mobile carousel controls */}
+                    <div className="flex justify-center gap-4 mt-6">
+                      <button
+                        onClick={() => carousel?.scrollPrev()}
+                        className="bg-[#242457] border border-[#4A4A7E] hover:bg-[#3A3A6E] rounded-full p-3 transition-colors"
+                      >
+                        <ChevronLeft className="w-6 h-6 text-[#F5F1E6]" />
+                      </button>
+                      <button
+                        onClick={() => carousel?.scrollNext()}
+                        className="bg-[#242457] border border-[#4A4A7E] hover:bg-[#3A3A6E] rounded-full p-3 transition-colors"
+                      >
+                        <ChevronRight className="w-6 h-6 text-[#F5F1E6]" />
+                      </button>
+                    </div>
                   </div>
 
                   {/* Desktop grid - adjusted spacing */}
