@@ -164,6 +164,7 @@ const faqs = [
 ]
 // ----- Supported Chains -----
 const supportedChains = [
+  { name: "Abstract", url: "https://www.abs.xyz" },
   { name: "Amoy (Polygon testnet)", url: "https://polygon.technology/blog/introducing-the-amoy-testnet-for-polygon-pos" },
   { name: "ApeChain", url: "https://apechain.com" },
   { name: "ApeChain Curtis (Testnet)", url: "https://apechain.com" },
@@ -210,6 +211,7 @@ const testnetNote = "Please note that blockchain testnets are for testing purpos
 
 // ----- Supported Wallets -----
 const supportedWallets = [
+  { name: "Abstract Global Wallet", url: "https://www.abs.xyz" },
   { name: "Bitski", url: "https://www.bitski.com/" },
   { name: "Blocto", url: "https://blocto.app/" },
   { name: "Coinbase Wallet", url: "https://www.coinbase.com/wallet" },
